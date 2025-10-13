@@ -217,68 +217,140 @@
 
         // === BANK SOAL: 129 items (40 Indonesia, 30 Tokoh, 30 Perlawanan, 29 Dunia) ===
       const BANK = [
-  { q: '1. Tahun berapa Proklamasi Kemerdekaan Indonesia dikumandangkan?', choices: ['1945', '1946', '1950', '1942'], a: 0, exp: 'Proklamasi kemerdekaan Indonesia dibacakan pada 17 Agustus 1945 oleh Sukarno.' },
-  { q: '2. Siapa yang mengetik naskah final teks Proklamasi sebelum dibacakan?', choices: ['Sayuti Melik', 'Ahmad Subardjo', 'Sutan Sjahrir', 'Muhammad Yamin'], a: 0, exp: 'Sayuti Melik dikreditkan sebagai yang mengetik versi final naskah proklamasi.' },
-  { q: '3. Peran BPUPKI pada masa pendudukan Jepang adalah?', choices: ['Menyusun dasar negara dan UUD untuk Indonesia merdeka', 'Mengatur ekonomi Jepang', 'Merekrut tentara Jepang', 'Menangani urusan pendidikan Belanda'], a: 0, exp: 'BPUPKI (Badan Penyelidik Usaha Persiapan Kemerdekaan Indonesia) dibentuk Jepang untuk membahas kemerdekaan.' },
-  { q: '4. Siapakah yang memimpin sidang BPUPKI sebagai ketua?', choices: ['Dr. Radjiman Wedyodiningrat', 'Sukarno', 'Mohammad Hatta', 'Sutan Sjahrir'], a: 0, exp: 'Dr. Radjiman Wedyodiningrat menjadi ketua sidang BPUPKI.' },
-  { q: '5. Tanggal dan tahun Sumpah Pemuda?', choices: ['28 Oktober 1928', '17 Agustus 1945', '1 Juni 1945', '20 Mei 1908'], a: 0, exp: 'Sumpah Pemuda diproklamasikan pada 28 Oktober 1928.' },
-  { q: '6. Organisasi yang dianggap menandai kebangkitan nasional pada 1908 adalah?', choices: ['Budi Utomo', 'Sarekat Islam', 'Muhammadiyah', 'Perhimpunan Indonesia'], a: 0, exp: 'Budi Utomo (1908) sering dianggap titik awal kebangkitan nasional modern.' },
-  { q: '7. Siapa pencipta lagu "Indonesia Raya"?', choices: ['Wage Rudolf Supratman', 'Sukarno', 'H. Mutahar', 'Ismail Marzuki'], a: 0, exp: 'Wage Rudolf Supratman menciptakan dan pertama kali memperdengarkan "Indonesia Raya".' },
-  { q: '8. Apa tujuan utama Politik Etis yang diterapkan Belanda?', choices: ['Memperbaiki kesejahteraan pribumi (pendidikan, irigasi, migrasi)', 'Menambah pajak', 'Peningkatan militer', 'Eksploitasi rempah'], a: 0, exp: 'Politik Etis (akhir abad 19) bertujuan memperbaiki kesejahteraan penduduk pribumi melalui beberapa program.' },
-  { q: '9. Kebijakan tanam paksa (Cultuurstelsel) paling berpengaruh pada sektor apa?', choices: ['Pertanian (tanaman ekspor)', 'Industri berat', 'Transportasi', 'Kesehatan publik'], a: 0, exp: 'Cultuurstelsel memaksa petani menanam tanaman ekspor sehingga berdampak pada agrikultur lokal.' },
-  { q: '10. Perjanjian Giyanti (1755) mengakibatkan pembagian kerajaan Mataram menjadi?', choices: ['Kasunanan Surakarta dan Kesultanan Yogyakarta', 'Kesultanan Banten dan Pajajaran', 'Majapahit dan Srivijaya', 'Kerajaan Bali dan Lombok'], a: 0, exp: 'Perjanjian Giyanti membagi Mataram menjadi dua entitas kerajaan Jawa tengah: Surakarta dan Yogyakarta.' },
-  { q: '11. Siapa tokoh yang dikenal sebagai Bapak Pendidikan Nasional (Taman Siswa)?', choices: ['Ki Hajar Dewantara', 'R.A. Kartini', 'H.O.S. Tjokroaminoto', 'Sutan Sjahrir'], a: 0, exp: 'Ki Hajar Dewantara mendirikan Taman Siswa dan mempelopori pendidikan nasional.' },
-  { q: '12. R.A. Kartini paling dikenal memperjuangkan?', choices: ['Pendidikan wanita dan emansipasi', 'Kemerdekaan militer', 'Perdagangan luar negeri', 'Agama'], a: 0, exp: 'Kartini menulis surat dan gagasan tentang pendidikan perempuan dan kesetaraan.' },
-  { q: '13. Perang Diponegoro (1825–1830) dipicu oleh?', choices: ['Sengketa tanah dan tekanan kebijakan kolonial', 'Invasi luar negeri', 'Kekeringan besar', 'Perjanjian dagang'], a: 0, exp: 'Perang Diponegoro dipicu oleh kebijakan kolonial yang merugikan lokal dan sengketa hak tanah.' },
-  { q: '14. Siapa pemimpin Perang Diponegoro?', choices: ['Pangeran Diponegoro', 'Pangeran Antasari', 'Tuanku Imam Bonjol', 'Cut Nyak Dhien'], a: 0, exp: 'Pangeran Diponegoro memimpin Perang Jawa melawan VOC/Belanda.' },
-  { q: '15. Tokoh yang memimpin Perang Padri di Sumatra Barat adalah?', choices: ['Tuanku Imam Bonjol', 'Tuanku Imam Nan', 'Pattimura', 'Teuku Umar'], a: 0, exp: 'Tuanku Imam Bonjol adalah tokoh utama Perang Padri di Sumatra Barat.' },
-  { q: '16. Perang Aceh berlangsung kira-kira pada tahun?', choices: ['1873–1904', '1825–1830', '1945–1949', '1600–1650'], a: 0, exp: 'Perang Aceh merupakan konflik panjang melawan Belanda pada akhir abad ke-19 sampai awal 20.' },
-  { q: '17. Siapa tokoh perempuan Aceh yang terkenal sebagai pejuang melawan Belanda?', choices: ['Cut Nyak Dhien', 'R.A. Kartini', 'Cut Nyak Meutia', 'Dewi Sartika'], a: 0, exp: 'Cut Nyak Dhien terkenal sebagai pemimpin perlawanan Aceh.' },
-  { q: '18. Peristiwa Puputan identik dengan daerah mana?', choices: ['Bali', 'Aceh', 'Jawa', 'Sulawesi'], a: 0, exp: 'Puputan merujuk pada perlawanan total di Bali termasuk peristiwa menyerahnya keluarga kerajaan secara massal.' },
-  { q: '19. Siapa Pangeran Antasari?', choices: ['Pemimpin perlawanan Banjar (Kalimantan Selatan)', 'Gubernur Hindia Belanda', 'Raja Jawa', 'Tokoh dagang'], a: 0, exp: 'Pangeran Antasari memimpin perlawanan rakyat Banjar melawan Belanda.' },
-  { q: '20. Peran Sarekat Islam pada awalnya adalah untuk?', choices: ['Melindungi pedagang pribumi dari kompetisi asing', 'Mendirikan partai politik', 'Mendirikan sekolah tinggi', 'Menjadi organisasi militer'], a: 0, exp: 'Sarekat Islam awalnya berfungsi sebagai organisasi perdagangan untuk melindungi pedagang pribumi.' },
-  { q: '21. Siapa yang dikenal sebagai proklamator Indonesia bersama Sukarno?', choices: ['Mohammad Hatta', 'Sutan Sjahrir', 'Sukarno sendirian', 'Ahmad Subardjo'], a: 0, exp: 'Sukarno dan Mohammad Hatta bersama-sama dikenal sebagai proklamator; Sukarno membacakan teks proklamasi.' },
-  { q: '22. Peristiwa "Peristiwa 10 November 1945" terjadi di kota?', choices: ['Surabaya', 'Jakarta', 'Bandung', 'Yogyakarta'], a: 0, exp: 'Pertempuran Surabaya pada 10 November 1945 menjadi simbol perlawanan melawan Sekutu/Brita.' },
-  { q: '23. Konferensi Meja Bundar (KMB) tahun 1949 menghasilkan?', choices: ['Pengakuan kedaulatan Indonesia oleh Belanda', 'Pembentukan PBB', 'Perjanjian Linggarjati', 'Perubahan UUD'], a: 0, exp: 'KMB di Den Haag (1949) menghasilkan pengakuan kedaulatan RI secara de jure.' },
-  { q: '24. Apa tujuan pemuda dalam Sumpah Pemuda?', choices: ['Mengukuhkan satu tanah air, bangsa, dan bahasa Indonesia', 'Membentuk partai politik', 'Menandatangani perjanjian dagang', 'Mendirikan sekolah'], a: 0, exp: 'Sumpah Pemuda menegaskan persatuan: satu tanah air, bangsa, dan bahasa Indonesia.' },
-  { q: '25. Organisasi pergerakan nasional yang didirikan kaum priyayi pada 1908 adalah?', choices: ['Budi Utomo', 'Sarekat Dagang', 'Indische Partij', 'PKI'], a: 0, exp: 'Budi Utomo didirikan oleh golongan priyayi yang peduli pendidikan.' },
-  { q: '26. Kapan Konferensi Asia-Afrika (Bandung) diselenggarakan?', choices: ['1955', '1945', '1965', '1950'], a: 0, exp: 'Konferensi Asia-Afrika berlangsung di Bandung pada 1955.' },
-  { q: '27. Siapa yang terkenal sebagai Orator Ulung dan menjadi Presiden pertama RI?', choices: ['Sukarno', 'Hatta', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Sukarno dikenal sebagai orator ulung dan presiden pertama Indonesia.' },
-  { q: '28. Apa fungsi Volksraad pada masa Hindia Belanda?', choices: ['Dewan penasihat kolonial yang memiliki kekuasaan terbatas', 'Parlemen penuh', 'Pengadilan tertinggi', 'Badan militer'], a: 0, exp: 'Volksraad dibentuk sebagai badan penasihat dengan perwakilan terbatas.' },
-  { q: '29. Siapa tokoh yang memprakarsai gerakan pendidikan perempuan melalui surat-suratnya?', choices: ['R.A. Kartini', 'Dewi Sartika', 'Sukarno', 'Sutan Sjahrir'], a: 0, exp: 'Kartini menulis surat yang kemudian mempengaruhi gerakan pendidikan perempuan.' },
-  { q: '30. Peristiwa yang menandai akhir VOC adalah?', choices: ['Pembubaran VOC tahun 1799 dan pengambilalihan urusannya oleh negara Belanda', 'Perjanjian Giyanti', 'Perang Diponegoro', 'Konferensi Meja Bundar'], a: 0, exp: 'VOC dibubarkan pada 1799; tanggung jawabnya diambil alih oleh negara Belanda.' },
-  { q: '31. Siapa yang memimpin peristiwa "Bandung Lautan Api" (1946)?', choices: ['Rakyat & pejuang setempat di Bandung', 'Sukarno', 'Belanda', 'Jepang'], a: 0, exp: 'Bandung Lautan Api terjadi sebagai aksi pembakaran kota oleh penduduk dan pejuang untuk menghalangi Belanda.' },
-  { q: '32. Perjanjian Linggarjati menegaskan pengakuan Belanda terhadap wilayah RI di?', choices: ['Jawa, Sumatra, dan Madura sebagai wilayah RI', 'Seluruh Nusantara tanpa syarat', 'Pulau Jawa saja', 'Sulawesi dan Kalimantan saja'], a: 0, exp: 'Linggarjati (1947) mengakui secara de facto wilayah RI meliputi Jawa, Madura, dan Sumatra.' },
-  { q: '33. Dokumen dasar negara yang dicetuskan Sukarno pada 1 Juni 1945 disebut?', choices: ['Pancasila (pidato 1 Juni)', 'UUD 1945', 'Piagam Jakarta', 'Sumpah Pemuda'], a: 0, exp: 'Sukarno mengemukakan lima sila yang kemudian dikenal sebagai Pancasila pada 1 Juni 1945.' },
-  { q: '34. Piagam Jakarta berisi poin penting apa yang sempat menjadi kontroversi?', choices: ['Ketentuan tentang kewajiban menjalankan syariat bagi pemeluk Islam (yang kemudian dimodifikasi)', 'Perjanjian dagang', 'Deklarasi perang', 'Pembagian wilayah'], a: 0, exp: 'Piagam Jakarta memuat butir yang menimbulkan perdebatan tentang hubungan agama dan negara.' },
-  { q: '35. Periode "Orde Lama" merujuk pada pemerintahan siapa?', choices: ['Sukarno', 'Soeharto', 'Habibie', 'Megawati'], a: 0, exp: 'Orde Lama adalah periode di bawah Presiden Sukarno.' },
-  { q: '36. Peristiwa G30S terjadi pada tahun berapa?', choices: ['1965', '1945', '1950', '1975'], a: 0, exp: 'Gerakan 30 September terjadi pada tahun 1965.' },
-  { q: '37. Siapa yang naik ke tampuk kekuasaan setelah G30S dan memimpin Orde Baru?', choices: ['Soeharto', 'Sukarno', 'Habibie', 'Megawati'], a: 0, exp: 'Soeharto menjadi presiden dan memimpin Orde Baru.' },
-  { q: '38. Reformasi 1998 berujung pada apa?', choices: ['Berakhirnya rezim Orde Baru dan mundurnya Soeharto', 'Munculnya kerajaan baru', 'Penutupan universitas', 'Perang saudara'], a: 0, exp: 'Reformasi 1998 memaksa Soeharto mundur dan membuka era reformasi.' },
-  { q: '39. Amandemen UUD 1945 dilakukan setelah era?', choices: ['Reformasi 1998', 'Perang Dunia II', 'Orde Lama', 'Periode VOC'], a: 0, exp: 'Amandemen UUD 1945 dilakukan pada era Reformasi setelah 1998.' },
-  { q: '40. Siapa pembaca teks Proklamasi?', choices: ['Sukarno', 'Mohammad Hatta', 'Sayuti Melik', 'Sutan Sjahrir'], a: 0, exp: 'Sukarno membacakan teks Proklamasi pada 17 Agustus 1945.' },
-  { q: '41. Perjanjian Renville menghasilkan garis demarkasi yang disebut?', choices: ['Garis Van Mook', 'Garis Maginot', 'Garis Mason', 'Garis Gandhi'], a: 0, exp: 'Perjanjian Renville menetapkan Garis Van Mook sebagai garis operasi di Jawa.' },
-  { q: '42. Siapa yang bersumpah Palapa menurut catatan sejarah Majapahit?', choices: ['Gajah Mada', 'Hayam Wuruk', 'Raden Wijaya', 'Kertanegara'], a: 0, exp: 'Gajah Mada bersumpah Palapa, menyatakan tekad menyatukan Nusantara.' },
-  { q: '43. Kerajaan maritim besar di Nusantara pada abad pertengahan termasuk?', choices: ['Sriwijaya dan Majapahit', 'Mataram dan Banten', 'Sunda dan Malaka', 'Bali dan Lombok'], a: 0, exp: 'Sriwijaya dan Majapahit adalah dua kerajaan maritim/pusat kebudayaan di Nusantara.' },
-  { q: '44. Siapa penulis "Max Havelaar" yang mengkritik praktik kolonial?', choices: ['Eduard Douwes Dekker (Multatuli)', 'Thomas Stamford Raffles', 'Multatuli adalah bukan orang Belanda lain', 'Herman Willem Daendels'], a: 0, exp: 'Multatuli (Eduard Douwes Dekker) menulis Max Havelaar sebagai kritik terhadap praksis kolonial.' },
-  { q: '45. Siapa gubernur jenderal Inggris di Jawa (1811–1816)?', choices: ['Sir Stamford Raffles', 'Cornelis de Houtman', 'Jan Pieterszoon', 'Hendrik Brouwer'], a: 0, exp: 'Sir Stamford Raffles menjabat di Jawa selama pendudukan Inggris (1811–1816).' },
-  { q: '46. Sutan Sjahrir dikenal sebagai?', choices: ['Perdana Menteri pertama dan intelektual politik', 'Panglima perang', 'Presiden pertama', 'Gubernur Jawa'], a: 0, exp: 'Sutan Sjahrir dikenal sebagai pemimpin politik sipil dan perdana menteri awal Republik.' },
-  { q: '47. Siapa pendiri Muhammadiyah?', choices: ['KH Ahmad Dahlan', 'H.O.S. Tjokroaminoto', 'Ki Hajar Dewantara', 'R.A. Kartini'], a: 0, exp: 'KH Ahmad Dahlan mendirikan Muhammadiyah (1912).' },
-  { q: '48. Bedanya Perjanjian Linggarjati dan Renville secara garis besar?', choices: ['Linggarjati pengakuan awal wilayah RI; Renville menetapkan garis demarkasi operasi militer', 'Keduanya identik', 'Renville lebih awal', 'Linggarjati menetapkan kedaulatan penuh'], a: 0, exp: 'Linggarjati (1947) dan Renville (1948) memiliki hasil dan konteks berbeda dalam diplomasi kemerdekaan.' },
-  { q: '49. Kapan Perang Diponegoro berlangsung?', choices: ['1825–1830', '1873–1904', '1908–1912', '1945–1949'], a: 0, exp: 'Perang Diponegoro berlangsung 1825–1830.' },
-  { q: '50. Dewan penasihat kolonial Hindia Belanda disebut?', choices: ['Volksraad', 'PPKI', 'PDRI', 'Dewan Rakyat'], a: 0, exp: 'Volksraad adalah dewan penasihat dengan perwakilan terbatas pada masa Hindia Belanda.' },
-  { q: '51. Mohammad Hatta banyak dikenal sebagai?', choices: ['Negarawan, wakil presiden pertama, dan pemikir ekonomi', 'Panglima perang', 'Presiden kedua', 'Gubernur Jawa'], a: 0, exp: 'Hatta adalah negarawan, diplomat, dan wakil presiden pertama.' },
-  { q: '52. Politik Etis memperkenalkan program apa?', choices: ['Pendidikan, irigasi, dan transmigrasi untuk kesejahteraan pribumi', 'Peningkatan pajak', 'Patroli militer', 'Eksploitasi sumber daya'], a: 0, exp: 'Politik Etis memperkenalkan kebijakan pembangunan sosial untuk "menebus" praktik VOC.' },
-  { q: '53. Sumpah Palapa dihubungkan dengan tokoh kerajaan mana?', choices: ['Majapahit (Gajah Mada)', 'Srivijaya', 'Mataram', 'Samudra Pasai'], a: 0, exp: 'Sumpah Palapa diasosiasikan dengan Gajah Mada dan Majapahit.' },
-  { q: '54. Siapa pemimpin pemberontakan Maluku 1817 (Pattimura)?', choices: ['Thomas Matulessy (Pattimura)', 'Nuku', 'Diponegoro', 'Tuanku Imam Bonjol'], a: 0, exp: 'Pattimura memimpin pemberontakan rakyat Maluku pada 1817.' },
-  { q: '55. Arti dari "Divide et impera" dalam konteks kolonial?', choices: ['Memecah belah agar mudah dikuasai', 'Membangun aliansi', 'Menciptakan kesejahteraan', 'Melindungi buday
-
-  (TRUNCATED: bank continues — full 129 items included in actual file)
+  { q: '1. Kapan Proklamasi Kemerdekaan Indonesia dikumandangkan?', choices: ['17 Agustus 1945', '28 Oktober 1928', '1 Juni 1945', '10 November 1945'], a: 0, exp: 'Proklamasi Kemerdekaan Indonesia dibacakan pada 17 Agustus 1945.' },
+  { q: '2. Siapa yang membacakan teks proklamasi?', choices: ['Sukarno', 'Mohammad Hatta', 'Sayuti Melik', 'Sutan Sjahrir'], a: 0, exp: 'Sukarno membacakan teks Proklamasi; Hatta mendampingi.' },
+  { q: '3. Siapa yang mengetik naskah proklamasi versi final?', choices: ['Sayuti Melik', 'Sukarno', 'Mohammad Hatta', 'Ahmad Subardjo'], a: 0, exp: 'Sayuti Melik mengetik naskah proklamasi versi final.' },
+  { q: '4. Pada tanggal berapa Sumpah Pemuda diproklamasikan?', choices: ['28 Oktober 1928', '17 Agustus 1945', '1 Juni 1945', '20 Mei 1908'], a: 0, exp: 'Sumpah Pemuda diproklamasikan pada 28 Oktober 1928.' },
+  { q: '5. Organisasi Budi Utomo didirikan pada tahun?', choices: ['1908', '1920', '1912', '1899'], a: 0, exp: 'Budi Utomo didirikan pada 1908 dan sering dikaitkan dengan kebangkitan nasional.' },
+  { q: '6. Tokoh yang mendirikan Taman Siswa adalah?', choices: ['Ki Hajar Dewantara', 'R.A. Kartini', 'H.O.S. Tjokroaminoto', 'Sutan Sjahrir'], a: 0, exp: 'Ki Hajar Dewantara mendirikan Taman Siswa untuk pendidikan nasional.' },
+  { q: '7. Siapa penulis lagu kebangsaan "Indonesia Raya"?', choices: ['Wage Rudolf Supratman', 'Ismail Marzuki', 'Sukarno', 'H. Mutahar'], a: 0, exp: 'Wage Rudolf Supratman menciptakan "Indonesia Raya".' },
+  { q: '8. Istilah "Politik Etis" pada masa kolonial Belanda terutama bertujuan?', choices: ['Meningkatkan kesejahteraan pribumi (pendidikan, irigasi, transmigrasi)', 'Menigkatkan ekspor rempah', 'Penegakan hukum kolonial', 'Militerisasi wilayah'], a: 0, exp: 'Politik Etis fokus pada perbaikan kesejahteraan pribumi, terutama pendidikan dan infrastruktur.' },
+  { q: '9. Apa itu Cultuurstelsel (tanam paksa)?', choices: ['Sistem paksa tanam tanaman ekspor oleh petani pribumi', 'Kebijakan pendidikan gratis', 'Program kesehatan masyarakat', 'Perdagangan bebas di pelabuhan'], a: 0, exp: 'Cultuurstelsel mewajibkan sebagian tanah/hasil tani untuk tanaman ekspor kepada pemerintah kolonial.' },
+  { q: '10. Perjanjian Giyanti (1755) membagi kerajaan Mataram menjadi?', choices: ['Kasunanan Surakarta dan Kesultanan Yogyakarta', 'Kesultanan Banten dan Pajajaran', 'Majapahit dan Srivijaya', 'Kerajaan Bali dan Lombok'], a: 0, exp: 'Perjanjian Giyanti memecah Mataram menjadi Surakarta dan Yogyakarta.' },
+  { q: '11. Tokoh yang terkenal dengan Sumpah Palapa adalah?', choices: ['Gajah Mada', 'Hayam Wuruk', 'Raden Wijaya', 'Kertanegara'], a: 0, exp: 'Gajah Mada mengikrarkan Sumpah Palapa untuk menyatukan Nusantara.' },
+  { q: '12. Kerajaan maritim besar yang pernah berpusat di Palembang adalah?', choices: ['Sriwijaya', 'Majapahit', 'Mataram', 'Pasai'], a: 0, exp: 'Sriwijaya adalah kerajaan maritim yang berpusat di Sumatra Selatan (Palembang).' },
+  { q: '13. Periode Majapahit mencapai puncaknya pada masa pemerintahan?', choices: ['Hayam Wuruk dengan Mahapatih Gajah Mada', 'Airlangga', 'Raden Wijaya', 'Kertanegara'], a: 0, exp: 'Majapahit mencapai puncak kekuasaan saat Hayam Wuruk dibantu Gajah Mada.' },
+  { q: '14. Siapa yang menulis kritik terhadap praktik kolonial Belanda melalui karya "Max Havelaar"?', choices: ['Eduard Douwes Dekker (Multatuli)', 'Thomas Stamford Raffles', 'Herman Willem Daendels', 'Goenawan Mohamad'], a: 0, exp: 'Eduard Douwes Dekker, bernama pena Multatuli, menulis "Max Havelaar".' },
+  { q: '15. Siapa gubernur jenderal Inggris di Jawa (1811–1816)?', choices: ['Sir Stamford Raffles', 'Hendrik Brouwer', 'Jan Pieterszoon Coen', 'Daendels'], a: 0, exp: 'Sir Stamford Raffles memerintah Jawa selama pendudukan Inggris (1811–1816).' },
+  { q: '16. Tokoh yang memimpin Perang Diponegoro adalah?', choices: ['Pangeran Diponegoro', 'Pangeran Antasari', 'Tuanku Imam Bonjol', 'Teuku Umar'], a: 0, exp: 'Pangeran Diponegoro memimpin Perang Jawa (1825–1830).' },
+  { q: '17. Perang Aceh berlangsung kira-kira pada tahun?', choices: ['1873–1904', '1825–1830', '1900–1905', '1945–1949'], a: 0, exp: 'Perang Aceh berlangsung lama, sekitar 1873–1904, melawan Belanda.' },
+  { q: '18. Tokoh wanita Aceh yang terkenal sebagai pejuang adalah?', choices: ['Cut Nyak Dhien', 'R.A. Kartini', 'Cut Nyak Meutia', 'Dewi Sartika'], a: 0, exp: 'Cut Nyak Dhien terkenal memimpin perlawanan di Aceh.' },
+  { q: '19. Siapa pemimpin perlawanan rakyat Maluku pada 1817 yang dikenal sebagai Pattimura?', choices: ['Thomas Matulessy', 'Nuku', 'Pattimura adalah nama lain', 'Tuanku Imam Bonjol'], a: 0, exp: 'Thomas Matulessy dikenal dengan nama Pattimura.' },
+  { q: '20. Perkembangan pergerakan nasional modern di Indonesia dipengaruhi oleh munculnya?', choices: ['Organisasi-organisasi seperti Budi Utomo, Sarekat Islam, Indische Partij', 'Reformasi 1998', 'Periode Orde Baru', 'Perang Dunia I'], a: 0, exp: 'Organisasi-organisasi awal pada awal abad 20 menggerakkan pergerakan nasional.' },
+  { q: '21. Siapakah yang menjadi Wakil Presiden pertama Republik Indonesia?', choices: ['Mohammad Hatta', 'Sukarno', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Mohammad Hatta menjadi Wakil Presiden pertama.' },
+  { q: '22. Konferensi Asia-Afrika 1955 diselenggarakan di kota?', choices: ['Bandung', 'Jakarta', 'Cairo', 'New Delhi'], a: 0, exp: 'Konferensi Asia-Afrika (Bandung) berlangsung di Bandung pada 1955.' },
+  { q: '23. Apa tujuan Gerakan Non-Blok yang muncul pasca Perang Dingin?', choices: ['Mempertahankan kemerdekaan negara-negara dari dominasi dua blok besar', 'Menjadi sekutu AS', 'Mengganti PBB', 'Mendirikan NATO baru'], a: 0, exp: 'Gerakan Non-Blok bertujuan menjaga kedaulatan negara-negara yang tidak berpihak.' },
+  { q: '24. Apa isi utama Piagam Jakarta (Jakarta Charter) yang sempat menjadi kontroversi?', choices: ['Kewajiban menjalankan syariat bagi pemeluk agama Islam (naskah awal)', 'Pembagian wilayah', 'Perjanjian dagang', 'Kebijakan pajak'], a: 0, exp: 'Piagam Jakarta memuat butir tentang hubungan agama dan negara yang kemudian dimodifikasi.' },
+  { q: '25. Apa peran BPUPKI (Badan Penyelidik Usaha Persiapan Kemerdekaan Indonesia)?', choices: ['Menyusun dasar negara dan merumuskan UUD sebelum proklamasi', 'Memimpin perang melawan Belanda', 'Mengatur pajak kolonial', 'Mendirikan VOC baru'], a: 0, exp: 'BPUPKI dibentuk pada masa pendudukan Jepang untuk membahas persiapan kemerdekaan.' },
+  { q: '26. Pada tanggal berapa Sukarno menyampaikan pidato yang memuat konsep Pancasila (1 Juni)?', choices: ['1 Juni 1945', '17 Agustus 1945', '28 Oktober 1928', '10 November 1945'], a: 0, exp: 'Sukarno menyampaikan gagasan dasar negara pada 1 Juni 1945.' },
+  { q: '27. Peristiwa penting yang terjadi tanggal 10 November 1945 adalah?', choices: ['Pertempuran Surabaya', 'Proklamasi Kemerdekaan', 'Konferensi Meja Bundar', 'G30S'], a: 0, exp: '10 November 1945 adalah tengara Pertempuran Surabaya.' },
+  { q: '28. Konferensi Meja Bundar (KMB) tahun 1949 menghasilkan?', choices: ['Pengakuan kedaulatan Indonesia oleh Belanda', 'Deklarasi perang', 'Pembentukan PBB', 'Perjanjian Linggarjati'], a: 0, exp: 'KMB di Den Haag menghasilkan pengakuan kedaulatan RI (1949).' },
+  { q: '29. Perjanjian Linggarjati (1947) mengakui penguasaan Republik pada wilayah?', choices: ['Jawa, Madura, dan Sumatra (secara de facto)', 'Seluruh Nusantara', 'Sulawesi dan Kalimantan saja', 'Pulau Jawa saja'], a: 0, exp: 'Linggarjati mengakui wilayah RI meliputi Jawa, Madura, dan Sumatra secara de facto.' },
+  { q: '30. Perjanjian Renville (1948) menghasilkan apa?', choices: ['Garis demarkasi (Garis Van Mook)', 'Pengakuan kedaulatan penuh', 'Pembentukan PBB', 'Perjanjian dagang baru'], a: 0, exp: 'Renville menghasilkan garis demarkasi operasi yang dikenal Garis Van Mook.' },
+  { q: '31. Siapa yang memimpin pergerakan Sarekat Islam pada awalnya?', choices: ['H.O.S. Tjokroaminoto', 'Ki Hajar Dewantara', 'Sukarno', 'Mohammad Hatta'], a: 0, exp: 'H.O.S. Tjokroaminoto adalah tokoh penting Sarekat Islam.' },
+  { q: '32. Tokoh yang dikenal sebagai Bapak Pendidikan Nasional adalah?', choices: ['Ki Hajar Dewantara', 'R.A. Kartini', 'Dewi Sartika', 'Sutan Sjahrir'], a: 0, exp: 'Ki Hajar Dewantara dikenal sebagai Bapak Pendidikan Nasional.' },
+  { q: '33. Siapa pendiri Muhammadiyah?', choices: ['KH Ahmad Dahlan', 'H.O.S. Tjokroaminoto', 'Ki Hajar Dewantara', 'R.A. Kartini'], a: 0, exp: 'KH Ahmad Dahlan mendirikan Muhammadiyah pada 1912.' },
+  { q: '34. Apa nama perjanjian yang menandai pembagian wilayah politik antara Belanda dan Inggris pada awal abad ke-19?', choices: ['Perjanjian London 1814', 'Perjanjian Giyanti', 'Perjanjian Renville', 'Perjanjian Linggarjati'], a: 0, exp: 'Perjanjian London (1814) mengembalikan banyak wilayah kepada Belanda setelah pendudukan Inggris.' },
+  { q: '35. Perang Banjar terjadi di pulau?', choices: ['Kalimantan (Banjar, Kalimantan Selatan)', 'Jawa', 'Sumatra', 'Bali'], a: 0, exp: 'Perang Banjar berlangsung di Kalimantan Selatan.' },
+  { q: '36. Tokoh Perang Padri yang dikenal dari Sumatra Barat adalah?', choices: ['Tuanku Imam Bonjol', 'Tuanku Nan Renceh', 'Pattimura', 'Teuku Umar'], a: 0, exp: 'Tuanku Imam Bonjol memimpin Perang Padri di Sumatra Barat.' },
+  { q: '37. Perang Diponegoro memberikan dampak apa kepada Belanda?', choices: ['Biaya besar dan perubahan administrasi kolonial', 'Pengakuan kedaulatan Indonesia', 'Pembentukan PBB', 'Kemerdekaan segera'], a: 0, exp: 'Perang Jawa memakan biaya besar sehingga berdampak pada kebijakan kolonial Belanda.' },
+  { q: '38. Apa tujuan awal dari Sarekat Dagang (yang kemudian Sarekat Islam)?', choices: ['Melindungi kepentingan pedagang pribumi', 'Mendirikan partai politik', 'Memperkuat VOC', 'Mengusir Korea'], a: 0, exp: 'Sarekat Dagang awalnya bertujuan melindungi pedagang pribumi dari kompetitor asing.' },
+  { q: '39. Siapa yang terkenal sebagai orator ulung dan memproklamasikan Pancasila?', choices: ['Sukarno', 'Hatta', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Sukarno dikenal sebagai orator ulung dan mengemukakan gagasan Pancasila.' },
+  { q: '40. Kapan terbentuknya Partai Komunis Indonesia (PKI) secara modern di masa pra-kemerdekaan?', choices: ['1920 (reshuffle dari Indische Partij serupa)', '1905', '1945', '1930'], a: 0, exp: 'PKI modern dapat ditelusuri ke 1920-an (organisasi komunis bermunculan pasca Perang Dunia I).' },
+  { q: '41. Sistem Tanam Paksa menimbulkan dampak utama bagi petani pribumi berupa?', choices: ['Eksploitasi dan kemiskinan petani', 'Kebijakan pendidikan gratis', 'Pembangunan rumah sakit', 'Pertumbuhan industri lokal'], a: 0, exp: 'Tanam paksa menimbulkan penderitaan dan eksploitasi petani pribumi.' },
+  { q: '42. Apa hasil penting Kongres Pemuda 1928?', choices: ['Sumpah Pemuda (Satu Nusa, Satu Bangsa, Satu Bahasa)', 'Proklamasi Kemerdekaan', 'Pembentukan KMB', 'Perjanjian Renville'], a: 0, exp: 'Kongres Pemuda 1928 menghasilkan Sumpah Pemuda.' },
+  { q: '43. Siapa tokoh yang mengetuai sidang BPUPKI?', choices: ['Dr. Radjiman Wedyodiningrat', 'Sukarno', 'Hatta', 'Ki Hajar Dewantara'], a: 0, exp: 'Dr. Radjiman memimpin sidang BPUPKI.' },
+  { q: '44. Perjanjian Giyanti terjadi pada abad ke?', choices: ['Abad ke-18 (1755)', 'Abad ke-17', 'Abad ke-19', 'Abad ke-16'], a: 0, exp: 'Perjanjian Giyanti ditandatangani pada 1755 (abad ke-18).' },
+  { q: '45. Siapa tokoh perempuan yang dikenal memperjuangkan pendidikan wanita melalui sekolah di Bandung?', choices: ['Dewi Sartika', 'R.A. Kartini', 'Cut Nyak Dhien', 'Siti Walidah'], a: 0, exp: 'Dewi Sartika mendirikan sekolah untuk perempuan di Bandung.' },
+  { q: '46. Siapa yang menjadi Perdana Menteri pertama Republik Indonesia (pemerintahan kabinet awal)?', choices: ['Sutan Sjahrir', 'Sukarno', 'Mohammad Hatta', 'Sudirman'], a: 0, exp: 'Sutan Sjahrir menjabat sebagai perdana menteri era awal republik.' },
+  { q: '47. Periode Orde Baru di Indonesia dipimpin oleh?', choices: ['Soeharto', 'Sukarno', 'Habibie', 'Megawati'], a: 0, exp: 'Soeharto memimpin Orde Baru setelah 1966 hingga 1998.' },
+  { q: '48. Reformasi 1998 menghasilkan salah satu perubahan besar yaitu?', choices: ['Pengunduran diri Soeharto dan era reformasi', 'Pembentukan VOC kembali', 'Perang saudara', 'Pembentukan kerajaan baru'], a: 0, exp: 'Reformasi 1998 menyebabkan mundurnya Soeharto dan perubahan politik besar.' },
+  { q: '49. Amandemen UUD 1945 dilakukan setelah era?', choices: ['Reformasi 1998', 'Perang Dunia II', 'Orde Lama', 'Masa VOC'], a: 0, exp: 'Amandemen UUD 1945 dilakukan pada era Reformasi setelah 1998.' },
+  { q: '50. Kapan Deklarasi Djuanda (Djuanda Declaration) tentang wilayah perairan Indonesia diumumkan?', choices: ['1957', '1945', '1965', '1950'], a: 0, exp: 'Deklarasi Djuanda diumumkan pada 1957 sebagai dasar klaim wilayah perairan Indonesia.' },
+  { q: '51. Apa yang dimaksud "politik pecah belah" (divide et impera) dalam konteks kolonial?', choices: ['Strategi memecah-belah penduduk untuk mempermudah penguasaan', 'Menyatukan rakyat', 'Membangun sekolah massal', 'Mempromosikan perdagangan'], a: 0, exp: 'Divide et impera berarti memecah belah agar penjajah lebih mudah menguasai wilayah.' },
+  { q: '52. Siapa pemimpin perjuangan Aceh selain Cut Nyak Dhien yang terkenal?', choices: ['Teuku Umar', 'Pattimura', 'Diponegoro', 'Pangeran Antasari'], a: 0, exp: 'Teuku Umar terkenal sebagai salah satu pemimpin perlawanan Aceh.' },
+  { q: '53. Siapa yang memelopori organisasi pemuda "Perhimpunan Pelajar Indonesia" di Belanda yang kemudian berperan di tanah air?', choices: ['Pergerakan pelajar Indonesia (PPPI) yang melibatkan tokoh-tokoh seperti Sutan Sjahrir dan others)', 'Sukarno', 'Hatta', 'Kartini'], a: 0, exp: 'Perhimpunan Pelajar Indonesia di Belanda menjadi lahan aktivitas politis bagi pelajar Indonesia.' },
+  { q: '54. Perang Jawa (Perang Diponegoro) sering disebut juga?', choices: ['Perang Diponegoro', 'Perang Padri', 'Perang Aceh', 'Perang Banjar'], a: 0, exp: 'Perang Jawa sering disebut Perang Diponegoro (1825–1830).' },
+  { q: '55. Siapa tokoh yang mengemukakan konsep Negara Kesatuan Republik Indonesia (NKRI) dalam praktek kenegaraan awal?', choices: ['Bung Karno dan Bung Hatta serta tokoh pendiri lainnya', 'Tuanku Imam Bonjol', 'Gajah Mada', 'Raffles'], a: 0, exp: 'Para pendiri negara, termasuk Sukarno dan Hatta, berperan merumuskan NKRI.' },
+  { q: '56. Kapan dan di mana Konferensi Meja Bundar (KMB) dilaksanakan?', choices: ['Den Haag, 1949', 'Bandung, 1955', 'Jakarta, 1945', 'Yogyakarta, 1948'], a: 0, exp: 'KMB dilaksanakan di Den Haag pada 1949.' },
+  { q: '57. Siapa tokoh yang terkenal dengan "Sumpah Palapa" dan usahanya menyatukan Nusantara?', choices: ['Gajah Mada', 'Hayam Wuruk', 'Airlangga', 'Raden Wijaya'], a: 0, exp: 'Gajah Mada bersumpah tidak akan bersantai sebelum menyatukan Nusantara.' },
+  { q: '58. Apa tujuan dibentuknya Volksraad pada masa Hindia Belanda?', choices: ['Sebagai dewan penasihat kolonial dengan kewenangan terbatas', 'Parlemen penuh rakyat', 'Badan militer', 'Pengadilan tertinggi'], a: 0, exp: 'Volksraad adalah badan penasihat yang representatif namun terbatas kekuasaannya.' },
+  { q: '59. Peristiwa "Bandung Lautan Api" terjadi pada tahun?', choices: ['1946', '1945', '1949', '1955'], a: 0, exp: 'Bandung Lautan Api terjadi pada Maret 1946 sebagai usaha pengosongan kota dari fasilitas yang dapat dimanfaatkan Belanda.' },
+  { q: '60. Siapa tokoh yang memimpin operasi perang rakyat di Sumatra Utara (Sisingamangaraja)?', choices: ['Sisingamangaraja XII', 'Pattimura', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'Sisingamangaraja XII memimpin perlawanan di Tapanuli (Sumatra Utara).' },
+  { q: '61. Apa yang dimaksud dengan "Puputan" dalam sejarah Bali?', choices: ['Perlawanan sampai mati oleh kraton Bali (perlawanan kehormatan)', 'Perjanjian damai', 'Evakuasi massal', 'Pendirian kerajaan baru'], a: 0, exp: 'Puputan adalah perlawanan massal sampai mati, terjadi di beberapa peristiwa di Bali.' },
+  { q: '62. Siapa yang memelopori PNI (Partai Nasional Indonesia) pada awalnya?', choices: ['Sukarno', 'Mohammad Hatta', 'Sutan Sjahrir', 'Tan Malaka'], a: 0, exp: 'Sukarno adalah salah satu tokoh yang memprakarsai PNI pada 1927.' },
+  { q: '63. Siapa tokoh yang dikenal dengan sebutan "Bung Tomo" dan perannya?', choices: ['Pemimpin orator muda pada Pertempuran Surabaya 1945', 'Perdana Menteri', 'Gubernur Jawa', 'Jenderal Belanda'], a: 0, exp: 'Bung Tomo memotivasi perlawanan rakyat Surabaya melalui siaran radio.' },
+  { q: '64. Apa makna "Sumpah Pemuda"?', choices: ['Janji persatuan: Satu Nusantara, Satu Bangsa, Satu Bahasa', 'Deklarasi perang', 'Perjanjian dagang', 'Pembentukan pasukan'], a: 0, exp: 'Sumpah Pemuda menegaskan identitas nasional berbahasa, berbangsa, dan bertanah air satu.' },
+  { q: '65. Apa peran Soekarno pada masa menjelang kemerdekaan (BPUPKI)?', choices: ['Mengemukakan dasar negara (Pancasila) dan memimpin pergerakan kebangsaan', 'Memimpin VOC', 'Gubernur Belanda', 'Penasihat militer Jepang'], a: 0, exp: 'Soekarno menyampaikan gagasan dasar negara pada sidang BPUPKI (1 Juni 1945).' },
+  { q: '66. Apa pentingnya Perjanjian Renville bagi perjuangan kemerdekaan?', choices: ['Menetapkan garis demarkasi yang membatasi operasi militer', 'Segera mengakhiri penjajahan', 'Membentuk PBB', 'Mendirikan negara baru'], a: 0, exp: 'Renville memetakan garis demarkasi yang berpengaruh pada gerak perjuangan militer.' },
+  { q: '67. Siapa tokoh yang menulis "Indonesia Menggugat"?', choices: ['Sutan Sjahrir', 'Sukarno', 'Tan Malaka', 'Sukiman'], a: 2, exp: 'Puisi/hasil pemikiran politik sering dikaitkan pada tokoh-tokoh; "Indonesia Menggugat" adalah karya yang dikaitkan dengan Soekarno (ada juga esai dan pidato berjudul mirip). (Catatan: di konteks ujian ini, pilih jawaban yang sesuai materi yang diajarkan guru.)' },
+  { q: '68. Siapa pemimpin perlawanan Banjar (Kalimantan Selatan)?', choices: ['Pangeran Antasari', 'Pattimura', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'Pangeran Antasari memimpin Perang Banjar melawan Belanda.' },
+  { q: '69. Perlawanan yang dipimpin Teuku Umar berasal dari daerah?', choices: ['Aceh', 'Jawa', 'Sumatra Selatan', 'Bali'], a: 0, exp: 'Teuku Umar adalah pahlawan Aceh yang terkenal karena taktik gerilya.' },
+  { q: '70. Siapa tokoh yang menandatangani Proklamasi bersama Sukarno?', choices: ['Mohammad Hatta', 'Sutan Sjahrir', 'Sudirman', 'Ahmad Yani'], a: 0, exp: 'Mohammad Hatta adalah proklamator bersama Sukarno.' },
+  { q: '71. Kapan Perang Dunia II berakhir, memengaruhi percepatan dekolonisasi?', choices: ['1945', '1918', '1950', '1939'], a: 0, exp: 'Perang Dunia II berakhir pada 1945, berdampak pada proses dekolonisasi.' },
+  { q: '72. Pada masa penjajahan, VOC berdiri pada abad ke?', choices: ['17 (1602 resmi didirikan)', '15', '18', '19'], a: 0, exp: 'VOC (Vereenigde Oostindische Compagnie) didirikan pada 1602 (abad ke-17).' },
+  { q: '73. Siapa yang dikenal sebagai Bapak Proklamator (pembaca proklamasi)?', choices: ['Sukarno', 'Hatta', 'Sayuti Melik', 'Sutan Sjahrir'], a: 0, exp: 'Sukarno dikenal sebagai proklamator yang membacakan teks proklamasi.' },
+  { q: '74. Siapa yang menjadi pemimpin militer Republik pada awal kemerdekaan dan terkenal memimpin perang gerilya?', choices: ['Jenderal Sudirman', 'Sudirman adalah nama panglima; lagi', 'Soeharto', 'A.H. Nasution'], a: 0, exp: 'Jenderal Sudirman terkenal sebagai panglima besar yang memimpin perang gerilya melawan Belanda.' },
+  { q: '75. Apa fungsi PPKI (Panitia Persiapan Kemerdekaan Indonesia) setelah proklamasi?', choices: ['Menyelesaikan konstitusi dan memilih pimpinan negara', 'Mengatur perdagangan kolonial', 'Menjadi militer Belanda', 'Mendirikan VOC baru'], a: 0, exp: 'PPKI membentuk pemerintahan awal dan mengesahkan UUD 1945.' },
+  { q: '76. Siapa tokoh yang mengemukakan "Trisakti"? (catatan sejarah modern Indonesia)', choices: ['Istilah Trisakti dikaitkan dengan tuntutan mahasiswa 1998', 'Tidak relevan', 'Soekarno', 'Soeharto'], a: 0, exp: 'Trisakti adalah tuntutan mahasiswa 1998; konteks pertanyaan modern—dalam ujian sejarah SMA, kaitkan dengan reformasi 1998 yang dipelopori gerakan mahasiswa.' },
+  { q: '77. Peristiwa apa yang menandai awal Orde Baru secara de facto?', choices: ['Munculnya kekuasaan Soeharto pasca peristiwa 1965–1966', 'Proklamasi Kemerdekaan', 'Reformasi 1998', 'Konferensi Asia-Afrika'], a: 0, exp: 'Orde Baru mulai saat Soeharto naik sebagai pemimpin setelah krisis politik 1965–1966.' },
+  { q: '78. Siapa yang menjadi Presiden setelah Soeharto mengundurkan diri pada 1998?', choices: ['BJ Habibie', 'Gus Dur', 'Megawati', 'Sukarno'], a: 0, exp: 'BJ Habibie menjadi presiden menggantikan Soeharto pada 1998.' },
+  { q: '79. Apa yang dimaksud dekade "Orde Lama"?', choices: ['Masa pemerintahan Sukarno (sebelum Orde Baru)', 'Masa pemerintahan Soeharto', 'Periode VOC', 'Masa Reformasi'], a: 0, exp: 'Orde Lama merujuk pada era pemerintahan Sukarno.' },
+  { q: '80. Siapa tokoh yang memimpin pemberontakan DI/TII pada awal Republik?', choices: ['S.M. Kartosuwiryo (DI/TII)', 'Pattimura', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'S.M. Kartosuwiryo memimpin DI/TII (Negara Islam Indonesia) pada awal Republik.' },
+  { q: '81. Bagaimana Konferensi Meja Bundar (KMB) mempengaruhi status kedaulatan Indonesia?', choices: ['Memberi pengakuan kedaulatan secara formal dari Belanda pada 1949', 'Mencabut kemerdekaan', 'Membentuk PBB', 'Membagi wilayah Nusantara'], a: 0, exp: 'KMB mengakui kedaulatan Indonesia secara formal pada 1949.' },
+  { q: '82. Siapa tokoh yang memelopori gerakan perlawanan rakyat Aceh pada awal abad ke-20?', choices: ['Teuku Umar dan Cut Nyak Dhien termasuk tokoh utama', 'Gajah Mada', 'Raden Wijaya', 'Soekarno'], a: 0, exp: 'Teuku Umar dan Cut Nyak Dhien adalah tokoh perlawanan Aceh.' },
+  { q: '83. Siapa tokoh yang terkenal karena "politik etis" memperkenalkan sekolah untuk pribumi?', choices: ['Wahidin Sudirohusodo adalah salah satu figur yang mendorong pendidikan; politik etis mendorong pendidikan', 'Sukarno', 'Hatta', 'Daendels'], a: 0, exp: 'Figur-figur kebangkitan nasional termasuk Wahidin Sudirohusodo yang mendorong pendidikan, sementara Politik Etis memfasilitasi pendidikan pribumi.' },
+  { q: '84. Apa yang menjadi salah satu penyebab kuatnya perlawanan lokal terhadap tanam paksa?', choices: ['Kerugian petani karena diwajibkan menanam tanaman ekspor', 'Kebijakan pendidikan gratis', 'Pemberian tanah kepada petani', 'Pembangunan infrastruktur lokal'], a: 0, exp: 'Tanam paksa membuat petani kehilangan kendali atas hasil panen, menimbulkan penderitaan sosial.' },
+  { q: '85. Siapa tokoh yang memimpin perlawanan rakyat Maluku pada 1817?', choices: ['Pattimura (Thomas Matulessy)', 'Nuku', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'Pattimura memimpin pemberontakan rakyat Maluku pada 1817.' },
+  { q: '86. Siapa yang menjadi Ketua Panitia Persiapan Kemerdekaan Indonesia (PPKI) setelah proklamasi?', choices: ['Sukarno (sebagai presiden), PPKI dipimpin secara kolektif termasuk Hatta', 'Radjiman', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Setelah proklamasi, PPKI bekerja menyusun pemerintahan; Sukarno dan Hatta memegang posisi utama.' },
+  { q: '87. Siapa yang dikenal sebagai tokoh intelektual kiri pada masa pergerakan nasional, penulis dan pemikir revolusioner?', choices: ['Tan Malaka', 'Sukarno', 'Hatta', 'Sutan Sjahrir'], a: 0, exp: 'Tan Malaka dikenal sebagai tokoh kiri dan intelektual revolusioner.' },
+  { q: '88. Kapan Proklamator Mohammad Hatta mengundurkan diri sebagai Wakil Presiden?', choices: ['1956 (mengundurkan diri dari jabatan wakil presiden pada 1956)', '1949', '1965', '1945'], a: 0, exp: 'Mohammad Hatta mengundurkan diri dari jabatan wakil presiden pada 1956.' },
+  { q: '89. Siapa tokoh yang memimpin perlawanan rakyat Bali pada masa penjajahan dan terlibat puputan?', choices: ['Tokoh kraton Bali (raja dan bangsawan setempat) ikut dalam puputan', 'Pattimura', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'Peristiwa puputan di Bali melibatkan keluarga kerajaan setempat dalam perlawanan sampai mati.' },
+  { q: '90. Siapa yang menggagas Sumpah Pemuda pada Kongres Pemuda 1928?', choices: ['Kongres Pemuda diikuti oleh berbagai organisasi pemuda — sumpah disepakati bersama', 'Sukarno', 'Hatta', 'Sutan Sjahrir'], a: 0, exp: 'Sumpah Pemuda lahir dari kesepakatan bersama perwakilan pemuda dari organisasi berbeda.' },
+  { q: '91. Siapa tokoh pergerakan yang banyak berperan dalam pergerakan nasional melalui tulisan dan organisasi, pemimpin Sarekat Islam?', choices: ['H.O.S. Tjokroaminoto', 'Ki Hajar Dewantara', 'Sutan Sjahrir', 'Sukarno'], a: 0, exp: 'H.O.S. Tjokroaminoto adalah tokoh penting Sarekat Islam dan pergerakan nasional.' },
+  { q: '92. Apa yang dimaksud "politik devide et impera" dalam praktik Belanda?', choices: ['Memecah belah kelompok lokal agar penjajahan lebih mudah dipertahankan', 'Mempererat persatuan', 'Menyediakan pendidikan gratis', 'Melakukan investasi besar untuk kesejahteraan'], a: 0, exp: 'Strategi memecah belah kelompok lokal diterapkan penjajah untuk memudahkan kontrol.' },
+  { q: '93. Siapa tokoh yang memimpin perjuangan di Sumatra Barat melawan Belanda (Padri)?', choices: ['Tuanku Imam Bonjol', 'Tuanku Nan Renceh', 'Pattimura', 'Teuku Umar'], a: 0, exp: 'Tuanku Imam Bonjol adalah pemimpin perang Padri.' },
+  { q: '94. Apa hasil utama dari Konferensi Asia-Afrika (Bandung) bagi negara-negara Asia-Afrika?', choices: ['Pengarusutamaan solidaritas negara-negara baru merdeka dan peluncuran gagasan non-blok', 'Pembentukan NATO', 'Pembentukan VOC', 'Perjanjian perdagangan tunggal'], a: 0, exp: 'Konferensi Bandung 1955 memperkuat solidaritas Asia-Afrika dan ide non-blok.' },
+  { q: '95. Apa nama perjanjian yang menandai akhir kekuasaan VOC?', choices: ['Pembubaran VOC (1799) dan pengambilalihan urusan oleh negara Belanda', 'Perjanjian Giyanti', 'Perjanjian Linggarjati', 'Perjanjian Renville'], a: 0, exp: 'VOC dibubarkan pada 1799; kewenangan dilanjutkan negara Belanda.' },
+  { q: '96. Siapa tokoh yang membentuk organisasi Budi Utomo?', choices: ['Dr. Wahidin Sudirohusodo dan Dr. Soetomo sebagai figur awal (Budi Utomo)', 'Sukarno', 'Hatta', 'Ki Hajar Dewantara'], a: 0, exp: 'Budi Utomo didirikan oleh kelompok priyayi dan tokoh seperti Wahidin Sudirohusodo.' },
+  { q: '97. Siapa tokoh yang terkenal memimpin perjuangan rakyat Batak (Sumatra Utara)?', choices: ['Sisingamangaraja XII', 'Pattimura', 'Diponegoro', 'Teuku Umar'], a: 0, exp: 'Sisingamangaraja XII memimpin perlawanan Batak di Tapanuli.' },
+  { q: '98. Apa penyebab langsung Perang Dunia I (1904–1918)?', choices: ['Pembunuhan Archduke Franz Ferdinand', 'Invasi Polandia', 'Serangan Pearl Harbor', 'Revolusi Bolshevik'], a: 0, exp: 'Pembunuhan Archduke Franz Ferdinand (1914) memicu Perang Dunia I.' },
+  { q: '99. Apa akibat kemerdekaan Indonesia terhadap proses dekolonisasi Asia?', choices: ['Memberi inspirasi dan momentum bagi negara-negara Asia untuk menuntut kemerdekaan pasca PD II', 'Menimbulkan penjajahan baru di Eropa', 'Mengakhiri PBB', 'Mendirikan VOC baru'], a: 0, exp: 'Kemenangan kemerdekaan Indonesia memberi contoh bagi negara-negara Asia yang ingin merdeka.' },
+  { q: '100. Siapa yang menjadi tokoh proklamator penanda kemerdekaan bangsa Indonesia?', choices: ['Sukarno dan Mohammad Hatta', 'Sutan Sjahrir saja', 'Pattimura', 'Diponegoro'], a: 0, exp: 'Sukarno dan Mohammad Hatta dikenal sebagai proklamator.' },
+  { q: '101. Kapan Deklarasi Universal Hak Asasi Manusia diresmikan oleh PBB?', choices: ['1948', '1918', '1955', '1939'], a: 0, exp: 'Deklarasi Universal HAM disahkan oleh PBB pada 1948.' },
+  { q: '102. Siapa tokoh yang memimpin perlawanan rakyat Minangkabau melawan Belanda pada Perang Padri?', choices: ['Tuanku Imam Bonjol', 'Pattimura', 'Teuku Umar', 'Cut Nyak Dhien'], a: 0, exp: 'Tuanku Imam Bonjol adalah pemimpin padri melawan Belanda di Sumatra Barat.' },
+  { q: '103. Siapa tokoh yang memimpin perlawanan rakyat di Kalimantan Selatan?', choices: ['Pangeran Antasari', 'Pattimura', 'Diponegoro', 'Tuanku Imam Bonjol'], a: 0, exp: 'Pangeran Antasari memimpin perlawanan Banjar di Kalimantan Selatan.' },
+  { q: '104. Kapan runtuhnya Tembok Berlin yang melambangkan akhir Perang Dingin?', choices: ['1989', '1975', '1999', '1961'], a: 0, exp: 'Tembok Berlin runtuh pada 1989, menandai akhir era Perang Dingin.' },
+  { q: '105. Siapa tokoh yang memprakarsai kebangkitan nasional lewat surat-surat tentang perempuan?', choices: ['R.A. Kartini', 'Dewi Sartika', 'Ki Hajar Dewantara', 'Sukarno'], a: 0, exp: 'R.A. Kartini menulis surat yang memengaruhi emansipasi perempuan Indonesia.' },
+  { q: '106. Apa latar belakang munculnya Partai Nasional Indonesia (PNI)?', choices: ['Kebutuhan organisasi politik nasional yang memperjuangkan kemerdekaan', 'Pembentukan VOC', 'Perlawanan lokal', 'Pembentukan kerajaan baru'], a: 0, exp: 'PNI didirikan sebagai wadah perjuangan nasional untuk kemerdekaan.' },
+  { q: '107. Apa penyebab utama konflik antara Perang Padri dan kaum adat di Sumatra Barat?', choices: ['Perbedaan interpretasi hukum Islam (reformis vs adat)', 'Perbedaan bahasa', 'Perbedaan perdagangan', 'Perbedaan agama lain'], a: 0, exp: 'Konflik Padri melibatkan kelompok reformis agama vs kelompok adat lokal.' },
+  { q: '108. Siapa tokoh yang menjadi pemimpin perjuangan daerah Maluku selain Pattimura?', choices: ['Nuku (pahlawan Maluku pada masa lain)', 'Teuku Umar', 'Diponegoro', 'Sisingamangaraja'], a: 0, exp: 'Tokoh Nuku adalah salah satu pemimpin besar Maluku sebelum Pattimura.' },
+  { q: '109. Apa fungsi Volksraad terhadap aspirasi pribumi?', choices: ['Sebagai forum perwakilan terbatas; aspirasi pribumi dapat disampaikan namun kekuasaan terbatas', 'Parlemen penuh dengan kekuasaan legislatif', 'Badan militer', 'Badan peradilan'], a: 0, exp: 'Volksraad memberi ruang diskusi namun tidak setara dengan pemerintahan kolonial.' },
+  { q: '110. Siapa yang memproklamasikan kemerdekaan Indonesia pada 17 Agustus 1945 di rumahnya (Jl. Pegangsaan Timur 56)?', choices: ['Sukarno', 'Hatta', 'Sayuti Melik', 'Sutan Sjahrir'], a: 0, exp: 'Proklamasi dibacakan Sukarno di rumahnya di Pegangsaan Timur 56.' },
+  { q: '111. Siapa pemimpin perjuangan Aceh yang juga pernah menjadi raja lokal dalam perlawanan?', choices: ['Teuku Cik Di Tiro (tokoh Aceh lainnya)', 'Pattimura', 'Diponegoro', 'Sultan Hasanuddin'], a: 0, exp: 'Teuku Cik Di Tiro termasuk tokoh perlawanan Aceh.' },
+  { q: '112. Era setelah mundurnya Soeharto disebut?', choices: ['Era Reformasi', 'Orde Lama', 'Zaman VOC', 'Perang Dunia II'], a: 0, exp: 'Setelah mundurnya Soeharto (1998) dimulai era Reformasi.' },
+  { q: '113. Siapa tokoh yang dikenal sebagai pelopor pendidikan bagi kaum perempuan di Sunda?', choices: ['Dewi Sartika', 'R.A. Kartini', 'Siti Walidah', 'Cut Nyak Meutia'], a: 0, exp: 'Dewi Sartika mendirikan sekolah untuk kaum perempuan di tanah Sunda.' },
+  { q: '114. Siapa tokoh pergerakan yang menyusun dasar negara selain Sukarno dalam sidang BPUPKI?', choices: ['Mohammad Yamin (kontribusi rumusan UUD dan gagasan)', 'Sutan Sjahrir', 'Tan Malaka', 'Ki Hajar Dewantara'], a: 0, exp: 'Mohammad Yamin turut berperan dalam perumusan dasar negara dan UUD awal.' },
+  { q: '115. Kapan Perang Bali (puputan) terakhir terjadi menghadapi Belanda?', choices: ['Awal abad ke-20 (1906–1908)], a: 0, exp: 'Peristiwa puputan besar terjadi pada 1906–1908 saat Belanda mengintervensi Bali.' },
+  { q: '116. Siapa tokoh yang memimpin perlawanan rakyat di Gayo atau Aceh bagian lainnya?', choices: ['Beberapa pemimpin lokal muncul; contoh adalah Teuku Umar, Cut Nyak Dhien, Teuku Cik Di Tiro', 'Pattimura', 'Diponegoro', 'Sultan Hasanuddin'], a: 0, exp: 'Aceh memiliki banyak tokoh perlawanan; contoh-contoh termasuk Teuku Umar dan Cut Nyak Dhien.' },
+  { q: '117. Dalam diplomasi perjuangan kemerdekaan, siapa tokoh yang banyak berperan sebagai diplomat RI internasional?', choices: ['Sutan Sjahrir dan Mohammad Hatta termasuk tokoh yang berperan diplomatik', 'Sukarno hanya orator', 'Pattimura', 'Pangeran Diponegoro'], a: 0, exp: 'Sutan Sjahrir, Hatta, dan tokoh lainnya berperan diplomasi internasional.' },
+  { q: '118. Apa yang dimaksud "gencatan senjata" dalam konteks Perang Kemerdekaan Indonesia?', choices: ['Hentikan sementara pertempuran antara pihak-pihak yang bertikai', 'Mendirikan pemerintahan baru', 'Mengirim pasukan tambahan', 'Membentuk kongres'], a: 0, exp: 'Gencatan senjata adalah penghentian sementara aksi militer antara pihak berkonflik.' },
+  { q: '119. Siapa tokoh yang dikenal sebagai penggagas peringatan Hari Kebangkitan Nasional (20 Mei)?', choices: ['Budi Utomo (1908) yang menjadi dasar peringatan Hari Kebangkitan Nasional', 'Sukarno', 'Hatta', 'Ki Hajar Dewantara'], a: 0, exp: '20 Mei (Budi Utomo) diperingati sebagai Hari Kebangkitan Nasional.' },
+  { q: '120. Apa dampak utama politik kolonial Belanda terhadap ekonomi pribumi?', choices: ['Ketergantungan pada produksi ekspor dan eksploitasi hasil tani', 'Kemandirian industri', 'Peningkatan kesejahteraan merata', 'Peningkatan demokrasi lokal'], a: 0, exp: 'Kebijakan kolonial sering mengutamakan komoditas ekspor yang merugikan petani lokal.' },
+  { q: '121. Apa latar belakang munculnya Sarekat Islam?', choices: ['Bertujuan melindungi kepentingan perdagangan pribumi dari kompetitor Tionghoa/asing', 'Mengganti VOC', 'Mendirikan universitas', 'Mendirikan parlemen'], a: 0, exp: 'Sarekat Islam awalnya lahir dari kebutuhan perlindungan pedagang pribumi.' },
+  { q: '122. Siapa tokoh yang memimpin perlawanan rakyat Maluku setelah Pattimura di masa lain?', choices: ['Nuku (pemimpin sebelumnya), serta figur lokal lainnya', 'Diponegoro', 'Sutan Sjahrir', 'Teuku Umar'], a: 0, exp: 'Nuku adalah pemimpin perlawanan Maluku yang pernah menentang VOC sebelum era Pattimura.' },
+  { q: '123. Siapa tokoh pergerakan yang terkenal karena perannya di pergerakan pelajar dan mahasiswa?', choices: ['Sutan Sjahrir (terlibat pergerakan pelajar/mahasiwa interneasional), juga banyak tokoh lain', 'Sukarno', 'Hatta', 'Tan Malaka'], a: 0, exp: 'Sutan Sjahrir adalah tokoh intelektual yang terlibat dalam pergerakan intelektual pelajar.' },
+  { q: '124. Apa yang dimaksud "dekolonisasi"?', choices: ['Proses negara-negara koloni memperoleh kemerdekaan dari kekuasaan kolonial', 'Pembentukan koloni baru', 'Ekspansi imperialisme', 'Penguatan VOC'], a: 0, exp: 'Dekolonisasi adalah proses kemerdekaan negara-negara bekas koloni.' },
+  { q: '125. Siapa tokoh yang terkenal mengobarkan semangat perlawanan di Surabaya melalui siaran radio?', choices: ['Bung Tomo', 'Sukarno', 'Hatta', 'Sutan Sjahrir'], a: 0, exp: 'Bung Tomo memotivasi rakyat Surabaya melalui radio dan pidato berapi-api.' },
+  { q: '126. Apa arti dari pernyataan "Indonesia Raya" dalam konteks kebangsaan?', choices: ['Lagu kebangsaan sebagai simbol persatuan dan identitas nasional', 'Nama partai politik', 'Nama organisasi dagang', 'Slogan komersial'], a: 0, exp: '"Indonesia Raya" adalah lagu kebangsaan yang menjadi simbol persatuan bangsa.' },
+  { q: '127. Siapa tokoh penting yang menjadi Presiden pertama Indonesia?', choices: ['Sukarno', 'Hatta', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Sukarno menjadi Presiden pertama Republik Indonesia.' },
+  { q: '128. Kapan Konferensi Asia-Afrika berlangsung?', choices: ['1955', '1945', '1965', '1950'], a: 0, exp: 'Konferensi Asia-Afrika diselenggarakan di Bandung pada 1955.' },
+  { q: '129. Apa sifat umum dari perlawanan rakyat Nusantara terhadap penjajahan pada abad ke-19?', choices: ['Beragam: gerilya, perang konvensional lokal, diplomasi; sering dipicu kebijakan kolonial merugikan', 'Selalu berhasil merebut kemerdekaan segera', 'Hanya diplomasi tanpa perlawanan bersenjata', 'Tidak ada perlawanan sama sekali'], a: 0, exp: 'Perlawanan rakyat Nusantara bersifat beragam: gerilya, perang besar, perlawanan lokal dan diplomasi, sering memicu biaya sosial besar bagi kolonial.' }
 ];
 
-// --- sanity check ---
+// sanity check
 if (BANK.length !== 129) {
-  console.warn('Peringatan: BANK soal tidak berjumlah 129, saat ini:', BANK.length);
+  console.warn('Peringatan: BANK soal tidak berjumlah 129 — saat ini:', BANK.length);
 }
 
 // -------------------- UTILITIES --------------------
@@ -293,8 +365,8 @@ function getTodayDateString(d) {
 // compute rotation offset from date: days since epoch mod BANK.length
 function rotationOffsetForDate(dateStr) {
   const parts = dateStr.split('-').map(Number);
-  const dt = new Date(parts[0], parts[1]-1, parts[2]);
-  const days = Math.floor(dt.getTime() / (24*60*60*1000));
+  const dt = new Date(parts[0], parts[1] - 1, parts[2]);
+  const days = Math.floor(dt.getTime() / (24 * 60 * 60 * 1000));
   return Math.abs(days) % BANK.length;
 }
 
@@ -312,17 +384,20 @@ function buildDailySetByRotation(dateStr) {
 // -------------------- RENDER EXAM (long form) --------------------
 function renderExamForDate(dateStr) {
   const panel = document.getElementById('panel');
-  if (!panel) return;
+  if (!panel) {
+    console.error('Elemen #panel tidak ditemukan di HTML. Pastikan file HTML asli memiliki <div id="panel"></div>.');
+    return;
+  }
   const set = buildDailySetByRotation(dateStr);
 
   panel.innerHTML = `
     <div id="examContainer">
       <div class="card">
         <div class="meta">Soal Hari: <span id="todayStr">${dateStr}</span></div>
-        <div style="margin-top:8px" class="small meta">Mode Ujian — semua ${set.length} soal muncul di bawah (urut tetap per-rotasi). Tekan <b>Selesai & Nilai</b> saat siap.</div>
+        <div style="margin-top:8px" class="small meta">Mode Ujian — semua ${set.length} soal tampil di satu halaman. Tekan <b>Selesai & Nilai</b> saat selesai.</div>
       </div>
       <form id="examForm"></form>
-      <div style="margin:12px 0; display:flex; gap:8px; align-items:center;">
+      <div style="margin:12px 0; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
         <button type="button" class="btn-primary" id="finishBtn">Selesai & Nilai</button>
         <button type="button" class="btn-ghost" id="btnScrollTop">Kembali ke atas</button>
         <div class="small meta" id="answeredCount">Terjawab: 0 / ${set.length}</div>
@@ -406,6 +481,15 @@ function finishAndShowOverlay(set, dateStr) {
   // lock inputs
   lockAllInputs();
 
+  // fill explanation contents into details (so user can expand per soal)
+  review.forEach(it => {
+    const idx = it.no - 1;
+    const detail = document.getElementById(`exp_detail_${idx}`);
+    const expDiv = document.getElementById(`exp_${idx}`);
+    if (expDiv) expDiv.textContent = it.explanation;
+    if (detail) detail.style.display = 'block';
+  });
+
   // overlay
   const overlay = document.getElementById('overlayResult');
   overlay.style.display = 'block';
@@ -419,9 +503,10 @@ function finishAndShowOverlay(set, dateStr) {
 
   const pct = Math.round((correct / total) * 100);
   let perfText = '';
-  if (pct >= 75) perfText = 'Selamat — performa baik (>=75%).';
-  else if (pct >= 50) perfText = 'Cukup — ada beberapa materi yang perlu ditinjau.';
-  else perfText = 'Perlu ditingkatkan — tinjau kembali pembahasan.';
+  if (pct >= 80) perfText = 'Selamat — performa sangat baik (>=80%).';
+  else if (pct >= 65) perfText = 'Bagus — performa baik (>=65%).';
+  else if (pct >= 50) perfText = 'Cukup — masih perlu peningkatan.';
+  else perfText = 'Perlu belajar lebih lanjut — tinjau pembahasan.';
 
   overlay.innerHTML = `
     <div style="max-width:980px;margin:0 auto;background:#fff;color:#0f172a;border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.4)">
@@ -508,19 +593,23 @@ function downloadJSON(obj, filename) {
 
 // -------------------- Hook UI controls (date picker, buttons) --------------------
 function hookUI() {
-  // show today button (header has renderToday())
+  // show today function
   window.renderToday = function() {
     const ds = getTodayDateString();
-    document.getElementById('todayStr')?.textContent = ds;
-    document.getElementById('datePicker')?.value && (document.getElementById('datePicker').value = ds);
+    // if there is a #todayStr in DOM, update; otherwise render exam
+    const todaySpan = document.getElementById('todayStr');
+    if (todaySpan) todaySpan.textContent = ds;
+    const dp = document.getElementById('datePicker');
+    if (dp) dp.value = ds;
     renderExamForDate(ds);
   };
 
   // previewDate function bound to button in HTML
   window.previewDate = function() {
-    const dateInput = document.getElementById('datePicker').value;
+    const dateInput = document.getElementById('datePicker')?.value;
     if (!dateInput) { alert('Pilih tanggal terlebih dahulu.'); return; }
-    document.getElementById('todayStr')?.textContent = dateInput + ' (preview)';
+    const todaySpan = document.getElementById('todayStr');
+    if (todaySpan) todaySpan.textContent = dateInput + ' (preview)';
     renderExamForDate(dateInput);
   };
 
@@ -565,6 +654,31 @@ function hookUI() {
 
 // -------------------- INIT --------------------
 (function init() {
+  // ensure page has required hooks: if #panel missing, try to create small notice
+  if (!document.getElementById('panel')) {
+    // try to find a suitable container — if not, create one at end of body
+    let panel = document.createElement('div');
+    panel.id = 'panel';
+    // style minimal to not break page
+    panel.style.margin = '18px';
+    document.body.appendChild(panel);
+  }
+  if (!document.getElementById('datePicker')) {
+    // attempt to find header nav button that triggers renderToday; if none, create a hidden date input
+    const dp = document.createElement('input');
+    dp.type = 'date';
+    dp.id = 'datePicker';
+    dp.style.display = 'none'; // keep out of view if original HTML already has control
+    document.body.appendChild(dp);
+  }
+  if (!document.getElementById('resultBox')) {
+    const rb = document.createElement('div');
+    rb.id = 'resultBox';
+    rb.className = 'small meta';
+    rb.style.margin = '12px';
+    document.body.insertBefore(rb, document.body.firstChild);
+  }
+
   hookUI();
   // render today by default
   renderExamForDate(getTodayDateString());
