@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sejarah Academy — 94 Soal/Hari (Kunci & Pembahasan)</title>
+    <title>Sejarah Academy</title>
     <style>
         :root {
             --bg: #f8fafc;
@@ -143,12 +143,10 @@
 
 <body>
     <header>
-        <h1>Sejarah Academy — 94 Soal / Hari (Soal Tetap + Pembahasan)</h1>
+        <h1>Sejarah Academy</h1>
         <div class="small">Soal berisi kunci jawaban dan pembahasan singkat. Set soal diacak tiap hari namun berasal
-            dari bank soal tetap 94 item.</div>
+            dari bank soal tetap 129 item.</div>
         <nav style="margin-top:12px">
-            <button class="btn-primary" onclick="renderToday()">Tampilkan Soal Hari Ini</button>
-            <button class="btn-ghost" onclick="downloadHTML()">Unduh Halaman</button>
         </nav>
     </header>
     <main>
@@ -218,8 +216,8 @@
         function shuffle(array, rand) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1));[array[i], array[j]] = [array[j], array[i]]; } return array; }
 
         // === BANK SOAL: 129 items (40 Indonesia, 30 Tokoh, 30 Perlawanan, 29 Dunia) ===
-        const BANK = [
-  // 1-129: Soal Sejarah Indonesia — tingkat SMA (unik, terverifikasi)
+      const BANK = [
+  /* 1..129 soal (SMA) — salin persis dari script final yang sebelumnya diberikan atau biarkan ini isi soal lengkap */
   { q: '1. Tahun berapa Proklamasi Kemerdekaan Indonesia dikumandangkan?', choices: ['1945', '1946', '1950', '1942'], a: 0, exp: 'Proklamasi kemerdekaan Indonesia dibacakan pada 17 Agustus 1945 oleh Sukarno.' },
   { q: '2. Siapa yang mengetik naskah final teks Proklamasi sebelum dibacakan?', choices: ['Sayuti Melik', 'Ahmad Subardjo', 'Sutan Sjahrir', 'Muhammad Yamin'], a: 0, exp: 'Sayuti Melik dikreditkan sebagai yang mengetik versi final naskah proklamasi.' },
   { q: '3. Peran BPUPKI pada masa pendudukan Jepang adalah?', choices: ['Menyusun dasar negara dan UUD untuk Indonesia merdeka', 'Mengatur ekonomi Jepang', 'Merekrut tentara Jepang', 'Menangani urusan pendidikan Belanda'], a: 0, exp: 'BPUPKI (Badan Penyelidik Usaha Persiapan Kemerdekaan Indonesia) dibentuk Jepang untuk membahas kemerdekaan.' },
@@ -351,70 +349,10 @@
   { q: '129. Peranan pendidikan politik dan organisasi pemuda (seperti pergerakan pelajar/organisasi pemuda) dalam kemerdekaan terutama bertujuan untuk?', choices: ['Membangkitkan kesadaran nasional, menyebarkan gagasan kebangsaan, dan mengorganisir aksi kolektif menuju kemerdekaan', 'Mendukung kolonialisme', 'Menghapus bahasa Indonesia', 'Menjalankan VOC'], a: 0, exp: 'Pemuda memainkan peran vital dalam menyebarkan gagasan kebangsaan dan memobilisasi dukungan untuk kemerdekaan.' }
 ];
 
-// Verify length
-if (BANK.length !== 129) {
-  console.warn('Peringatan: BANK soal tidak berjumlah 129 — saat ini:', BANK.length);
-}
+// Safety: ensure length
+if (BANK.length !== 129) console.warn('Peringatan: BANK soal harus 129 — saat ini:', BANK.length);
 
-// Utility: render all questions to the page
-function renderAllQuestions() {
-  const panel = document.getElementById('panel');
-  if (!panel) return;
-  // clear existing content and build exam view
-  panel.innerHTML = `
-    <div id="examContainer">
-      <div class="card">
-        <div class="meta">Soal Hari: <span id="todayStr">${getTodayDateString()}</span></div>
-        <div style="margin-top:10px" class="small meta">Semua ${BANK.length} soal tampil di bawah. Pilih salah satu jawaban untuk tiap soal, lalu tekan <b>Selesai & Nilai</b>.</div>
-      </div>
-      <form id="examForm"></form>
-      <div style="margin:12px 0; display:flex; gap:8px; align-items:center;">
-        <button type="button" class="btn-primary" id="finishAll">Selesai & Nilai</button>
-        <button type="button" class="btn-ghost" id="scrollTop">Kembali ke atas</button>
-        <div class="small meta" id="answeredCount" style="margin-left:12px">Terjawab: 0 / ${BANK.length}</div>
-      </div>
-      <div id="resultArea" class="card" style="display:none;"></div>
-    </div>
-  `;
-
-  const form = document.getElementById('examForm');
-  // Build markup for each question
-  BANK.forEach((item, idx) => {
-    const qno = idx + 1;
-    const wrapper = document.createElement('div');
-    wrapper.className = 'card question';
-    wrapper.id = `qwrap_${idx}`;
-    const qHTML = `
-      <div class="meta">Soal ${qno} / ${BANK.length}</div>
-      <div style="margin-top:6px;font-weight:600">${item.q}</div>
-      <div class="choices" style="margin-top:10px" id="choices_${idx}">
-        ${item.choices.map((ch, ci) => {
-          const name = `q_${idx}`;
-          const id = `q_${idx}_${ci}`;
-          return `<label style="display:block;margin:6px 0;padding:8px;border-radius:8px;border:1px solid #e6eef6;background:#fff;cursor:pointer">
-                    <input type="radio" name="${name}" id="${id}" value="${ci}" style="margin-right:10px" />
-                    <strong>${String.fromCharCode(65 + ci)}.</strong> ${ch}
-                  </label>`;
-        }).join('')}
-      </div>
-      <details id="detail_${idx}" style="margin-top:8px; display:none;">
-        <summary class="small">Pembahasan (ditampilkan setelah dinilai)</summary>
-        <div class="small" id="exp_${idx}"></div>
-      </details>
-    `;
-    wrapper.innerHTML = qHTML;
-    form.appendChild(wrapper);
-  });
-
-  // Bind events
-  document.getElementById('finishAll').addEventListener('click', finishExam);
-  document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  // update answered count when any radio changes
-  form.addEventListener('change', updateAnsweredCount);
-  updateAnsweredCount();
-}
-
-// Helper: get today string
+// ---------- Utility functions ----------
 function getTodayDateString(d) {
   const dt = d || new Date();
   const y = dt.getFullYear();
@@ -423,136 +361,239 @@ function getTodayDateString(d) {
   return `${y}-${m}-${day}`;
 }
 
-// Update answered counter
+// seeded shuffle for daily variation (keeps order stable per tanggal)
+function mulberry32(a) { return function () { var t = a += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
+function shuffle(array, rand) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+function getSeedFromDate(dateStr) { const parts = dateStr.split('-').map(Number); return parts[0] * 10000 + parts[1] * 100 + parts[2]; }
+function buildDailySet(dateStr) { const seed = getSeedFromDate(dateStr); const rand = mulberry32(seed + 999); return shuffle(BANK.slice(), rand); }
+
+// ---------- Render exam ----------
+function renderExamLong() {
+  const panel = document.getElementById('panel');
+  if (!panel) return;
+  const dateStr = getTodayDateString();
+  const dailySet = buildDailySet(dateStr); // deterministic per tanggal
+
+  // Build header + form
+  panel.innerHTML = `
+    <div id="examContainer">
+      <div class="card">
+        <div class="meta">Soal Hari: <span id="todayStr">${dateStr}</span></div>
+        <div style="margin-top:8px" class="small meta">Mode Ujian — semua ${dailySet.length} soal. Tidak ada penyimpanan otomatis. Tekan <b>Selesai & Nilai</b> jika sudah selesai.</div>
+      </div>
+      <form id="examForm"></form>
+      <div style="margin:12px 0; display:flex; gap:8px; align-items:center;">
+        <button type="button" class="btn-primary" id="finishBtn">Selesai & Nilai</button>
+        <button type="button" class="btn-ghost" id="btnScrollTop">Kembali ke atas</button>
+        <div class="small meta" id="answeredCount">Terjawab: 0 / ${dailySet.length}</div>
+      </div>
+    </div>
+    <div id="overlayResult" style="display:none;"></div>
+  `;
+
+  const form = document.getElementById('examForm');
+
+  // render each question
+  dailySet.forEach((item, idx) => {
+    const qno = idx + 1;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'card question';
+    wrapper.id = `q_wrap_${idx}`;
+    wrapper.innerHTML = `
+      <div class="meta">Soal ${qno} / ${dailySet.length}</div>
+      <div style="margin-top:6px;font-weight:600">${item.q}</div>
+      <div class="choices" id="choices_${idx}" style="margin-top:10px">
+        ${item.choices.map((ch, ci) => `
+          <label style="display:block;margin:6px 0;padding:8px;border-radius:8px;border:1px solid #e6eef6;background:#fff;cursor:pointer">
+            <input name="q_${idx}" type="radio" value="${ci}" style="margin-right:10px" />
+            <strong>${String.fromCharCode(65 + ci)}.</strong> ${ch}
+          </label>
+        `).join('')}
+      </div>
+      <details id="exp_detail_${idx}" style="margin-top:8px; display:none;">
+        <summary class="small">Pembahasan</summary>
+        <div class="small" id="exp_${idx}"></div>
+      </details>
+    `;
+    form.appendChild(wrapper);
+  });
+
+  // events
+  document.getElementById('finishBtn').addEventListener('click', () => finishAndShowOverlay(dailySet));
+  document.getElementById('btnScrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  form.addEventListener('change', updateAnsweredCount);
+  updateAnsweredCount();
+}
+
+// count answered
 function updateAnsweredCount() {
-  const total = BANK.length;
+  const form = document.getElementById('examForm');
+  if (!form) return;
+  const total = form.querySelectorAll('.question').length || BANK.length;
   let answered = 0;
   for (let i = 0; i < total; i++) {
     const radios = document.getElementsByName(`q_${i}`);
-    for (const r of radios) {
-      if (r.checked) { answered++; break; }
-    }
+    for (const r of radios) if (r.checked) { answered++; break; }
   }
   const el = document.getElementById('answeredCount');
   if (el) el.textContent = `Terjawab: ${answered} / ${total}`;
 }
 
-// Finish: grade and show review
-function finishExam() {
-  if (!confirm('Kamu yakin ingin menyelesaikan ujian dan menilai sekarang? Setelah menilai, jawaban akan dikunci di tampilan review.')) return;
-  const total = BANK.length;
+// ---------- Finish & Overlay ----------
+function finishAndShowOverlay(dailySet) {
+  if (!confirm('Yakin selesai & nilai? Setelah menilai, jawaban akan dikunci.')) return;
+  const total = dailySet.length;
   let correct = 0;
   const review = [];
+
+  // collect answers
   for (let i = 0; i < total; i++) {
     const radios = document.getElementsByName(`q_${i}`);
-    let selected = null;
-    for (const r of radios) {
-      if (r.checked) { selected = Number(r.value); break; }
-    }
-    const isCorrect = selected === BANK[i].a;
+    let sel = null;
+    for (const r of radios) if (r.checked) { sel = Number(r.value); break; }
+    const isCorrect = sel === dailySet[i].a;
     if (isCorrect) correct++;
-    // reveal explanation area and populate
-    const detail = document.getElementById(`detail_${i}`);
-    const expDiv = document.getElementById(`exp_${i}`);
-    if (expDiv) expDiv.innerText = `Jawaban benar: ${String.fromCharCode(65 + BANK[i].a)}. ${BANK[i].choices[BANK[i].a]}\n\nPembahasan: ${BANK[i].exp}`;
-    if (detail) detail.style.display = 'block';
     review.push({
       no: i + 1,
-      question: BANK[i].q,
-      your: selected == null ? null : String.fromCharCode(65 + selected),
-      yourText: selected == null ? null : BANK[i].choices[selected],
-      answer: String.fromCharCode(65 + BANK[i].a),
-      answerText: BANK[i].choices[BANK[i].a],
+      question: dailySet[i].q,
+      your: sel == null ? null : String.fromCharCode(65 + sel),
+      yourText: sel == null ? null : dailySet[i].choices[sel],
+      answer: String.fromCharCode(65 + dailySet[i].a),
+      answerText: dailySet[i].choices[dailySet[i].a],
       correct: isCorrect,
-      explanation: BANK[i].exp
+      explanation: dailySet[i].exp
     });
   }
 
-  // show result summary in resultArea
-  const resultArea = document.getElementById('resultArea');
-  resultArea.style.display = 'block';
-  resultArea.innerHTML = `
-    <h3>Hasil Ujian — ${getTodayDateString()}</h3>
-    <div class="small meta">Skor: <strong>${correct} / ${total}</strong> (${Math.round((correct/total)*100)}%)</div>
-    <div style="margin-top:8px; display:flex; gap:8px;">
-      <button class="btn-ghost" id="downloadReviewBtn">Unduh Review (JSON)</button>
-      <button class="btn-ghost" id="downloadKeyBtn">Unduh Kunci (JSON)</button>
-      <button class="btn-ghost" id="collapseAll">Sembunyikan Pembahasan</button>
-      <button class="btn-ghost" id="expandAll">Tampilkan Semua Pembahasan</button>
+  // lock inputs
+  lockAllInputs();
+
+  // build overlay content
+  const overlay = document.getElementById('overlayResult');
+  overlay.style.display = 'block';
+  overlay.style.position = 'fixed';
+  overlay.style.inset = '0';
+  overlay.style.background = 'rgba(15, 23, 42, 0.9)';
+  overlay.style.zIndex = '9999';
+  overlay.style.overflow = 'auto';
+  overlay.style.padding = '30px';
+  overlay.style.color = '#fff';
+
+  const pct = Math.round((correct / total) * 100);
+  let perfText = '';
+  if (pct >= 75) perfText = 'Selamat — performa baik (>=75%).';
+  else if (pct >= 50) perfText = 'Cukup — ada beberapa materi yang perlu ditinjau.';
+  else perfText = 'Perlu ditingkatkan — tinjau kembali pembahasan.';
+
+  overlay.innerHTML = `
+    <div style="max-width:980px;margin:0 auto;background:#fff;color:#0f172a;border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.4)">
+      <h2 style="margin:0 0 8px 0">Hasil Ujian — ${getTodayDateString()}</h2>
+      <div class="small meta">Skor: <strong>${correct} / ${total}</strong> (${pct}%)</div>
+      <div class="small meta" style="margin-top:6px">${perfText}</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn-primary" id="btnViewReview">Lihat Pembahasan</button>
+        <button class="btn-ghost" id="btnDownloadReview">Unduh Review (JSON)</button>
+        <button class="btn-ghost" id="btnDownloadKey">Unduh Kunci (JSON)</button>
+        <button class="btn-ghost" id="btnReturn">Kembali ke Ujian</button>
+      </div>
+
+      <div id="reviewPanel" style="margin-top:18px;display:none;">
+        <h3 style="margin-top:0">Pembahasan Per Soal</h3>
+        <div id="reviewList"></div>
+      </div>
     </div>
-    <div style="margin-top:10px;" id="passMessage" class="small meta"></div>
   `;
-  // pass/fail hint (opsional)
-  const passEl = document.getElementById('passMessage');
-  const pct = (correct / total) * 100;
-  if (pct >= 75) {
-    passEl.innerText = 'Selamat — performa baik (>=75%).';
-  } else if (pct >= 50) {
-    passEl.innerText = 'Cukup — ada beberapa materi yang perlu ditinjau.';
-  } else {
-    passEl.innerText = 'Perlu ditingkatkan — ulangi dan tinjau pembahasan.';
-  }
 
-  // bind download buttons
-  document.getElementById('downloadReviewBtn').addEventListener('click', () => downloadReviewFile({ date: getTodayDateString(), score: correct, total, review }));
-  document.getElementById('downloadKeyBtn').addEventListener('click', () => downloadKeyFile());
-  document.getElementById('collapseAll').addEventListener('click', () => {
-    for (let i = 0; i < total; i++) document.getElementById(`detail_${i}`).style.display = 'none';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  document.getElementById('expandAll').addEventListener('click', () => {
-    for (let i = 0; i < total; i++) document.getElementById(`detail_${i}`).style.display = 'block';
+  // bind overlay actions
+  document.getElementById('btnReturn').addEventListener('click', () => {
+    overlay.style.display = 'none';
+    // scroll to top of exam
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // scroll to result
-  resultArea.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('btnDownloadReview').addEventListener('click', () => {
+    const payload = { date: getTodayDateString(), score: correct, total, review };
+    downloadJSON(payload, `review_${getTodayDateString()}.json`);
+  });
+
+  document.getElementById('btnDownloadKey').addEventListener('click', () => {
+    const key = dailySet.map((q, i) => ({ no: i + 1, answer: String.fromCharCode(65 + q.a), answerText: q.choices[q.a], explanation: q.exp }));
+    downloadJSON({ date: getTodayDateString(), key }, `kunci_${getTodayDateString()}.json`);
+  });
+
+  document.getElementById('btnViewReview').addEventListener('click', () => {
+    renderReviewPanel(review);
+  });
+
+  // auto-scroll overlay to top
+  overlay.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Download review JSON
-function downloadReviewFile(resultObj) {
-  const data = JSON.stringify(resultObj, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
+// lock radio inputs after finish
+function lockAllInputs() {
+  const inputs = document.querySelectorAll('#examForm input[type="radio"]');
+  inputs.forEach(inp => { inp.disabled = true; });
+}
+
+// render review inside overlay
+function renderReviewPanel(review) {
+  const panel = document.getElementById('reviewPanel');
+  const list = document.getElementById('reviewList');
+  if (!panel || !list) return;
+  list.innerHTML = '';
+
+  review.forEach(it => {
+    const item = document.createElement('div');
+    item.style.border = '1px solid #e6eef6';
+    item.style.padding = '10px';
+    item.style.marginBottom = '8px';
+    item.style.borderRadius = '8px';
+    item.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-weight:600">Soal ${it.no}</div>
+        <div style="font-size:14px">${it.correct ? '<span style="color:green">Benar</span>' : '<span style="color:red">Salah</span>'}</div>
+      </div>
+      <div style="margin-top:6px">${it.question}</div>
+      <div style="margin-top:8px" class="small"><strong>Jawaban Anda:</strong> ${it.your ? it.your + '. ' + (it.yourText || '') : '<em>Tidak menjawab</em>'}</div>
+      <div style="margin-top:4px" class="small"><strong>Jawaban Benar:</strong> ${it.answer}. ${it.answerText}</div>
+      <div style="margin-top:8px" class="small"><strong>Pembahasan:</strong> ${it.explanation}</div>
+    `;
+    list.appendChild(item);
+  });
+
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+// helper: download JSON
+function downloadJSON(obj, filename) {
+  const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `review_${resultObj.date}.json`;
+  a.download = filename;
   a.click();
 }
 
-// Download key JSON (answers + explanations)
-function downloadKeyFile() {
-  const key = BANK.map((q, i) => ({ no: i + 1, answer: String.fromCharCode(65 + q.a), answerText: q.choices[q.a], explanation: q.exp }));
-  const data = JSON.stringify({ date: getTodayDateString(), key }, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `kunci_${getTodayDateString()}.json`;
-  a.click();
-}
-
-// Hook export buttons in aside (if present)
+// ---------- Hook aside export buttons (jika masih ada di halaman) ----------
 function hookAsideButtons() {
-  const b1 = document.querySelector('button[onclick="downloadTodayJSON()"]');
-  if (b1) {
-    b1.addEventListener('click', () => {
-      // build today's set (all BANK in fixed order for today)
-      // We'll use deterministic shuffle by date to maintain "daily variation"
-      const dateStr = getTodayDateString();
-      const set = buildDailySet(dateStr); // uses seeded shuffle below
-      const blob = new Blob([JSON.stringify(set, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `soal_${dateStr}.json`;
-      a.click();
+  const bExportSoal = document.querySelector('button[onclick="downloadTodayJSON()"]');
+  if (bExportSoal) {
+    bExportSoal.addEventListener('click', () => {
+      const set = buildDailySet(getTodayDateString());
+      downloadJSON(set, `soal_${getTodayDateString()}.json`);
     });
   }
-  const b2 = document.querySelector('button[onclick="downloadKey()"]');
-  if (b2) {
-    b2.addEventListener('click', () => downloadKeyFile());
+  const bExportKey = document.querySelector('button[onclick="downloadKey()"]');
+  if (bExportKey) {
+    bExportKey.addEventListener('click', () => {
+      const set = buildDailySet(getTodayDateString());
+      const key = set.map((q, i) => ({ no: i + 1, answer: String.fromCharCode(65 + q.a), answerText: q.choices[q.a], explanation: q.exp }));
+      downloadJSON({ date: getTodayDateString(), key }, `kunci_${getTodayDateString()}.json`);
+    });
   }
-  const b3 = document.querySelector('button[onclick="downloadHTML()"]');
-  if (b3) {
-    b3.addEventListener('click', () => {
+  const bHtml = document.querySelector('button[onclick="downloadHTML()"]');
+  if (bHtml) {
+    bHtml.addEventListener('click', () => {
       const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
       const blob = new Blob([html], { type: 'text/html' });
       const a = document.createElement('a');
@@ -561,35 +602,20 @@ function hookAsideButtons() {
       a.click();
     });
   }
-  // load saved answers button is irrelevant (we removed storage) — if exists, disable
-  const b4 = document.querySelector('button[onclick="loadSavedAnswers()"]');
-  if (b4) {
-    b4.disabled = true;
-    b4.title = 'Fitur memuat jawaban dinonaktifkan pada mode ujian panjang';
-  }
-  const b5 = document.querySelector('button[onclick="downloadReview()"]');
-  if (b5) {
-    b5.addEventListener('click', () => {
-      alert('Gunakan tombol "Unduh Review" di bagian hasil setelah menilai untuk mengunduh file review.');
-    });
+  const bLoad = document.querySelector('button[onclick="loadSavedAnswers()"]');
+  if (bLoad) {
+    bLoad.disabled = true;
+    bLoad.title = 'Fitur memuat jawaban dinonaktifkan pada mode ujian panjang';
   }
 }
 
-// --- Deterministic shuffle (seeded by date) so "set harian" tetap konsisten tiap tanggal ---
-function mulberry32(a) { return function () { var t = a += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
-function shuffle(array, rand) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
-function getSeedFromDate(dateStr) { const parts = dateStr.split('-').map(Number); return parts[0] * 10000 + parts[1] * 100 + parts[2]; }
-function buildDailySet(dateStr) { const seed = getSeedFromDate(dateStr); const rand = mulberry32(seed + 999); return shuffle(BANK.slice(), rand); }
-
-// Initialize page
-(function initLongExam() {
-  // replace existing quizPanel UI to long exam
-  renderAllQuestions();
+// ---------- Init ----------
+(function init() {
+  renderExamLong();
   hookAsideButtons();
-
-  // show a brief note in footer/resultBox if present
+  // show message in resultBox if exists
   const rb = document.getElementById('resultBox');
-  if (rb) rb.innerText = 'Mode Ujian: semua soal tampil sekaligus. Tidak ada penyimpanan otomatis. Tekan "Selesai & Nilai" saat siap.';
+  if (rb) rb.innerText = 'Mode: Ujian panjang. Tekan "Selesai & Nilai" saat benar-benar selesai.';
 })();
 
     </script>
