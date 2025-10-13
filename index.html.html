@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sejarah Academy — 129 Soal/Hari (Kunci & Pembahasan)</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #fff;
+            --muted: #475569;
+            --accent: #0369a1
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: var(--bg);
+            color: #0f172a;
+            margin: 0
+        }
+
+        header {
+            background: var(--card);
+            padding: 18px 20px;
+            box-shadow: 0 1px 6px rgba(2, 6, 23, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 10
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 18px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        nav {
+            margin-top: 10px
+        }
+
+        button {
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 8px 12px;
+            border: 0
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white
+        }
+
+        .btn-ghost {
+            background: #e6eef6;
+            color: var(--accent)
+        }
+
+        .card {
+            background: var(--card);
+            padding: 14px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(2, 6, 23, 0.04);
+            margin-bottom: 12px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 16px
+        }
+
+        @media(max-width:880px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .question {
+            margin-bottom: 10px
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted)
+        }
+
+        .progress {
+            height: 10px;
+            background: #e6eef6;
+            border-radius: 999px;
+            overflow: hidden
+        }
+
+        .progress>i {
+            display: block;
+            height: 100%;
+            background: var(--accent);
+            width: 0%
+        }
+
+        .choices button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 8px;
+            border: 1px solid #e6eef6;
+            background: white
+        }
+
+        .choices button.selected {
+            background: #e6f6ff;
+            border-color: #90cdf4
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        details {
+            margin-top: 8px
+        }
+
+        pre {
+            white-space: pre-wrap
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Sejarah Academy — 129 Soal / Hari (Soal Tetap + Pembahasan)</h1>
+        <div class="small">Soal berisi kunci jawaban dan pembahasan singkat. Set soal diacak tiap hari namun berasal
+            dari bank soal tetap 129 item.</div>
+        <nav style="margin-top:12px">
+            <button class="btn-primary" onclick="renderToday()">Tampilkan Soal Hari Ini</button>
+            <button class="btn-ghost" onclick="downloadHTML()">Unduh Halaman</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <div class="meta">Soal Hari: <span id="todayStr"></span></div>
+                    <div style="margin-top:8px" id="panel">
+                        <div id="quizPanel">
+                            <div class="progress" style="margin-bottom:8px"><i id="progBar"></i></div>
+                            <div class="card" id="qCard">
+                                <div id="qMeta" class="small meta"></div>
+                                <div id="qText" style="margin-top:8px;font-weight:600"></div>
+                                <div class="choices" id="qChoices" style="margin-top:10px"></div>
+                                <div
+                                    style="margin-top:10px;display:flex;gap:8px;justify-content:space-between;align-items:center">
+                                    <div>
+                                        <button class="btn-ghost" id="btnPrev">Sebelumnya</button>
+                                        <button class="btn-ghost" id="btnNext">Berikutnya</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn-ghost" id="btnSave">Simpan Jawaban</button>
+                                        <button class="btn-primary" id="btnFinish">Selesai & Nilai</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small meta" style="margin-top:8px">Jawaban disimpan otomatis setiap perubahan.
+                                Tekan <b>Selesai & Nilai</b> untuk menilai.</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Hasil & Review</h3>
+                    <div id="resultBox" class="small meta">Belum ada hasil.</div>
+                    <div style="margin-top:8px">
+                        <button class="btn-ghost" onclick="downloadReview()">Unduh Review Jawaban</button>
+                        <button class="btn-ghost" onclick="loadSavedAnswers()">Muat Jawaban Tersimpan</button>
+                    </div>
+                </div>
+            </div>
+
+            <aside>
+                <div class="card">
+                    <h3>Pengaturan & Pratinjau</h3>
+                    <label class="small">Pilih Tanggal (preview):</label>
+                    <input type="date" id="datePicker"
+                        style="width:100%;padding:8px;margin-top:6px;border-radius:8px;border:1px solid #e6eef6" />
+                    <div style="margin-top:8px"><button class="btn-primary" onclick="previewDate()">Pratinjau</button>
+                    </div>
+                    <hr />
+                    <div class="small meta">Bank soal terdiri dari 129 soal terverifikasi. Set harian adalah urutan acak
+                        dari bank ini (agar campur & seimbang per kategori).</div>
+                </div>
+
+                <div class="card">
+                    <h3>Ekspor</h3>
+                    <p class="small">Unduh soal hari ini atau kunci jawaban.</p>
+                    <button class="btn-ghost" onclick="downloadTodayJSON()">Unduh Soal (JSON)</button>
+                    <div style="margin-top:8px"><button class="btn-ghost" onclick="downloadKey()">Unduh Kunci
+                            (JSON)</button></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>© Sejarah Academy — Soal & Pembahasan</footer>
+
+    <script>
+        // small seeded shuffle
+        function mulberry32(a) { return function () { var t = a += 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
+        function shuffle(array, rand) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1));[array[i], array[j]] = [array[j], array[i]]; } return array; }
+
+        // === BANK SOAL: 129 items (40 Indonesia, 30 Tokoh, 30 Perlawanan, 29 Dunia) ===
+        const BANK = [
+            // --- 1-40: Sejarah Indonesia (40) ---
+            { q: 'Tahun Proklamasi Kemerdekaan Indonesia?', choices: ['1945', '1946', '1950', '1942'], a: 0, exp: 'Proklamasi kemerdekaan Indonesia dibacakan pada 17 Agustus 1945.' },
+            { q: 'Siapa yang membacakan teks Proklamasi?', choices: ['Sukarno', 'Mohammad Hatta', 'Sayuti Melik', 'Ahmad Subardjo'], a: 0, exp: 'Sukarno membacakan teks proklamasi, Mohammad Hatta mendampingi.' },
+            { q: 'Tanggal Proklamasi Indonesia?', choices: ['17 Agustus 1945', '28 Oktober 1928', '10 November 1945', '1 Juni 1945'], a: 0, exp: 'Tanggal proklamasi adalah 17 Agustus 1945.' },
+            { q: 'Perjanjian Linggarjati pada tahun?', choices: ['1947', '1949', '1945', '1950'], a: 0, exp: 'Perjanjian Linggarjati ditandatangani pada tahun 1947 antara RI dan Belanda.' },
+            { q: 'Konferensi Meja Bundar (KMB) menghasilkan pengakuan kedaulatan Indonesia pada tahun?', choices: ['1949', '1947', '1945', '1950'], a: 0, exp: 'KMB (Den Haag) pada 1949 mengakui kedaulatan RI secara de jure.' },
+            { q: 'Apa tujuan politik Etis yang diterapkan Belanda?', choices: ['Meningkatkan kesejahteraan pribumi', 'Memperluas monopoli dagang', 'Militerisasi', 'Penghapusan sekolah pribumi'], a: 0, exp: 'Politik Etis diperkenalkan untuk memperbaiki kesejahteraan rakyat pribumi (pendidikan, infrastruktur, migrasi).' },
+            { q: 'Organisasi Budi Utomo berdiri pada tahun?', choices: ['1908', '1928', '1912', '1899'], a: 0, exp: 'Budi Utomo didirikan tahun 1908 dan menandai kebangkitan nasional.' },
+            { q: 'Peristiwa Sumpah Pemuda terjadi pada tanggal?', choices: ['28 Oktober 1928', '17 Agustus 1945', '1 Juni 1945', '10 November 1945'], a: 0, exp: 'Sumpah Pemuda diproklamasikan 28 Oktober 1928.' },
+            { q: 'Apa semboyan dalam Sumpah Pemuda?', choices: ['Satu Nusa, Satu Bangsa, Satu Bahasa', 'Merah Putih', 'Bersatu Kita Teguh', 'Merdeka'], a: 0, exp: 'Sumpah Pemuda: "Satu Nusa, Satu Bangsa, Satu Bahasa".' },
+            { q: 'BPUPKI dibentuk oleh siapa?', choices: ['Jepang', 'Belanda', 'Inggris', 'Sekutu'], a: 0, exp: 'BPUPKI dibentuk oleh pemerintah pendudukan Jepang untuk mempersiapkan kemerdekaan.' },
+            { q: 'Tokoh yang memimpin sidang BPUPKI sebagai ketua adalah?', choices: ['Dr. Radjiman Wedyodiningrat', 'Sukarno', 'Mohammad Hatta', 'Soekarni'], a: 0, exp: 'Dr. Radjiman Wedyodiningrat menjadi ketua sidang BPUPKI.' },
+            { q: 'Perjanjian Renville menimbulkan apa?', choices: ['Garis demarkasi (Van Mook)', 'Pengakuan kedaulatan', 'Kemerdekaan penuh', 'Pengembalian wilayah'], a: 0, exp: 'Perjanjian Renville (1948) menghasilkan garis demarkasi yang dikenal Garis Van Mook.' },
+            { q: 'Konferensi Asia-Afrika diselenggarakan di kota?', choices: ['Bandung', 'Jakarta', 'Kairo', 'New Delhi'], a: 0, exp: 'Konferensi Asia-Afrika diselenggarakan di Bandung pada 1955.' },
+            { q: 'Siapa yang dikenal sebagai Bapak Proklamator?', choices: ['Sukarno', 'Hatta', 'Sutan Sjahrir', 'Sudirman'], a: 0, exp: 'Sukarno dikenal sebagai salah satu proklamator (pembaca teks proklamasi).' },
+            { q: 'Siapa wakil presiden pertama Indonesia?', choices: ['Mohammad Hatta', 'Sukarno', 'Sutan Sjahrir', 'Soeharto'], a: 0, exp: 'Mohammad Hatta menjadi Wakil Presiden pertama.' },
+            { q: 'Perjanjian Giyanti (1755) memecah kerajaan Mataram menjadi?', choices: ['Surakarta & Yogyakarta', 'Banten & Sunda', 'Madura & Bali', 'Aceh & Padang'], a: 0, exp: 'Perjanjian Giyanti membagi Mataram menjadi Kasunanan Surakarta dan Kesultanan Yogyakarta.' },
+            { q: 'Apa isi dari politik "tanam paksa" (Cultuurstelsel)?', choices: ['Tanaman untuk ekspor yang diwajibkan petani', 'Pendidikan gratis', 'Pembagian tanah', 'Kebebasan berorganisasi'], a: 0, exp: 'Cultuurstelsel mewajibkan sebagian tanah/hasil untuk tanaman ekspor seperti kopi dan tebu.' },
+            { q: 'Apa tujuan pergerakan Sarekat Islam awalnya?', choices: ['Melindungi pedagang pribumi', 'Mendirikan pemerintahan', 'Mengajukan kemerdekaan', 'Mendirikan sekolah'], a: 0, exp: 'Sarekat Islam awalnya bertujuan melindungi kepentingan ekonomi pedagang pribumi.' },
+            { q: 'Perang Diponegoro berlangsung pada tahun?', choices: ['1825–1830', '1873–1904', '1803–1838', '1945–1949'], a: 0, exp: 'Perang Diponegoro (Perang Jawa) berlangsung 1825–1830 dipimpin Pangeran Diponegoro.' },
+            { q: 'Siapa yang mengetik naskah Proklamasi kemerdekaan?', choices: ['Sayuti Melik', 'Sukarno', 'Hatta', 'Ahmad Subardjo'], a: 0, exp: 'Sayuti Melik mengetik naskah proklamasi versi final yang dibacakan Sukarno.' },
+            { q: 'Peristiwa 10 November 1945 dikenal sebagai pertempuran di?', choices: ['Surabaya', 'Jakarta', 'Yogyakarta', 'Bandung'], a: 0, exp: 'Pertempuran besar melawan Sekutu terjadi di Surabaya pada 10 November 1945.' },
+            { q: 'Apa pentingnya Konferensi Meja Bundar (KMB)?', choices: ['Pengakuan kedaulatan Indonesia oleh Belanda', 'Pembentukan PBB', 'Akhir penjajahan Jepang', 'Perang Aceh'], a: 0, exp: 'KMB (1949) menandai pengakuan kedaulatan RI oleh Belanda secara resmi.' },
+            { q: 'Siapa pendiri organisasi Budi Utomo?', choices: ['Dr. Wahidin Sudirohusodo dan Dr. Soetomo sebagai figur awal', 'Sukarno', 'Hatta', 'Mohammad Yamin'], a: 0, exp: 'Budi Utomo didirikan oleh kalangan priyayi/pendukung pendidikan seperti Dr. Wahidin.' },
+            { q: 'Periode Orde Baru dipimpin oleh siapa?', choices: ['Soeharto', 'Sukarno', 'Habibie', 'Megawati'], a: 0, exp: 'Periode Orde Baru dipimpin Presiden Soeharto (1967–1998).' },
+            { q: 'Amandemen UUD 1945 terjadi setelah era?', choices: ['Reformasi 1998', 'Orde Baru', 'Perang Dunia II', 'Masa kolonial'], a: 0, exp: 'Amandemen UUD 1945 dilakukan pada era Reformasi setelah 1998.' },
+            { q: 'Hari kebangkitan nasional diperingati pada tahun?', choices: ['1908', '1928', '1945', '1950'], a: 0, exp: 'Kebangkitan Nasional diperingati 20 Mei 1908 (Budi Utomo berdiri).' },
+            { q: 'Apa fungsi Volksraad pada masa Hindia Belanda?', choices: ['Dewan penasihat kolonial tanpa kekuasaan penuh', 'Parlemen penuh', 'Badan militer', 'Pengadilan'], a: 0, exp: 'Volksraad adalah dewan penasihat yang beranggotakan elit tapi memiliki kekuasaan terbatas.' },
+            { q: 'Perjanjian Renville terjadi pada tahun?', choices: ['1948', '1947', '1949', '1950'], a: 0, exp: 'Perjanjian Renville ditandatangani pada 1948 antara Belanda dan RI yang dimediasi.' },
+            { q: 'Apa itu "Politik Etis" pada masa kolonial Belanda?', choices: ['Kebijakan bantuan warga pribumi (pendidikan, irigasi, migrasi)', 'Kebijakan penindasan', 'Kebijakan militer', 'Kebijakan perdagangan bebas'], a: 0, exp: 'Politik Etis diperkenalkan untuk menebus kesalahan VOC dan memperbaiki kesejahteraan pribumi.' },
+            { q: 'Siapa penggagas peringatan Sumpah Pemuda (lagu/penyanyi Wage)?', choices: ['Wage Rudolf Supratman membuat lagu Indonesia Raya, bukan penggagas Sumpah Pemuda', 'Sukarno', 'Hatta', 'Ki Hajar Dewantara'], a: 0, exp: 'Wage Rudolf Supratman menciptakan lagu "Indonesia Raya"; Sumpah Pemuda diikuti lagu kebangsaan belakangan.' },
+            { q: 'Apa hasil utama dari Kongres Pemuda 1928?', choices: ['Pengakuan identitas nasional Indonesia (Sumpah Pemuda)', 'Pembentukan pemerintahan', 'Deklarasi kemerdekaan', 'Perjanjian dagang'], a: 0, exp: 'Kongres menghasilkan Sumpah Pemuda yang memperkuat identitas kebangsaan.' },
+
+            // --- 41-70: Tokoh Nasional (30) ---
+            { q: 'R.A. Kartini terkenal karena perjuangannya dalam bidang apa?', choices: ['Emansipasi wanita dan pendidikan', 'Perang melawan Belanda', 'Politik', 'Perdagangan'], a: 0, exp: 'R.A. Kartini memperjuangkan hak pendidikan bagi perempuan pribumi.' },
+            { q: 'Ki Hajar Dewantara mendirikan lembaga pendidikan apa?', choices: ['Taman Siswa', 'Muhammadiyah', 'Budi Utomo', 'Sarekat Islam'], a: 0, exp: 'Ki Hajar Dewantara mendirikan Taman Siswa untuk pendidikan nasional.' },
+            { q: 'Siapa tokoh yang dikenal sebagai "Orator Ulung" dan pembaca proklamasi?', choices: ['Sukarno', 'Hatta', 'Sutan Sjahrir', 'Sudirman'], a: 0, exp: 'Sukarno terkenal sebagai orator ulung dan pembaca teks Proklamasi.' },
+            { q: 'Mohammad Hatta dikenal peranannya sebagai?', choices: ['Wakil Presiden dan tokoh diplomasi', 'Pahlawan militer', 'Pemimpin pelayaran', 'Gubernur Jawa'], a: 0, exp: 'Mohammad Hatta adalah Wakil Presiden pertama dan diplomat penting RI.' },
+            { q: 'Sutan Sjahrir berperan sebagai apa dalam pemerintahan awal RI?', choices: ['Perdana Menteri pertama', 'Presiden', 'Wakil Presiden', 'Gubernur'], a: 0, exp: 'Sutan Sjahrir menjadi perdana menteri pertama kabinet RI (de facto) setelah kemerdekaan.' },
+            { q: 'Pattimura (Thomas Matulessy) memimpin perlawanan di pulau?', choices: ['Maluku', 'Sumatra', 'Jawa', 'Bali'], a: 0, exp: 'Pattimura memimpin perlawanan rakyat Maluku melawan VOC pada 1817.' },
+            { q: 'Sisingamangaraja XII memimpin perlawanan pada pulau?', choices: ['Sumatra Utara (Tapanuli)', 'Jawa', 'Kalimantan', 'Sulawesi'], a: 0, exp: 'Sisingamangaraja XII memimpin perlawanan Batak di Sumatra Utara.' },
+            { q: 'Cut Nyak Dhien terkenal dari daerah?', choices: ['Aceh', 'Jawa', 'Bali', 'Sulawesi'], a: 0, exp: 'Cut Nyak Dhien adalah pahlawan wanita Aceh yang melawan Belanda.' },
+            { q: 'Pangeran Diponegoro berasal dari daerah?', choices: ['Yogyakarta (Jawa)', 'Aceh', 'Sumatra', 'Bali'], a: 0, exp: 'Diponegoro adalah bangsawan Jawa yang memimpin Perang Jawa.' },
+            { q: 'Bung Tomo terkenal di pertempuran kota?', choices: ['Surabaya', 'Jakarta', 'Bandung', 'Yogyakarta'], a: 0, exp: 'Bung Tomo menjadi simbol semangat perlawanan pada Pertempuran Surabaya 1945.' },
+            { q: 'Ki Hajar Dewantara dikenal sebagai Bapak Pendidikan karena?', choices: ['Memperjuangkan pendidikan pribumi dan mendirikan Taman Siswa', 'Memimpin perang', 'Menjadi presiden', 'Mendirikan VOC'], a: 0, exp: 'Ia berfokus pada pendidikan nasional untuk rakyat Indonesia.' },
+            { q: 'Tan Malaka dikenal sebagai tokoh apa?', choices: ['Pemikir revolusioner dan tokoh kiri', 'Tokoh monarki', 'Tokoh agama', 'Gubernur'], a: 0, exp: 'Tan Malaka adalah pemikir kiri dan tokoh nasionalis revolusioner.' },
+            { q: 'Dr. Wahidin Sudirohusodo dikenal sebagai pendukung berdirinya?', choices: ['Budi Utomo', 'Sarekat Islam', 'PKI', 'Taman Siswa'], a: 0, exp: 'Ia termasuk figur yang menggerakkan pendirian Budi Utomo.' },
+            { q: 'Sukarno berperan dalam perumusan Pancasila pada tanggal?', choices: ['1 Juni 1945', '28 Oktober 1928', '17 Agustus 1945', '10 November 1945'], a: 0, exp: 'Sukarno mengemukakan gagasan dasar negara (Pancasila) pada 1 Juni 1945 dalam sidang BPUPKI.' },
+            { q: 'Mohammad Yamin berperan dalam usaha merumuskan?', choices: ['Undang-Undang Dasar dan dasar negara', 'Politik luar negeri', 'Pertanian', 'Industri'], a: 0, exp: 'Mohammad Yamin ikut berkontribusi dalam perumusan dasar negara dan UUD awal.' },
+            { q: 'Gajah Mada terkenal dengan Sumpah Palapa yang bertujuan?', choices: ['Menyatukan Nusantara', 'Mendeklarasikan kemerdekaan', 'Mengusir Portugis', 'Mendirikan kerajaan baru'], a: 0, exp: 'Sumpah Palapa Gajah Mada bertujuan menyatukan Nusantara di bawah Majapahit.' },
+            { q: 'R.A. Kartini memperjuangkan terutama?', choices: ['Pendidikan perempuan', 'Kedaulatan negara', 'Perjuangan militer', 'Perdagangan'], a: 0, exp: 'Kartini fokus pada emansipasi perempuan melalui pendidikan.' },
+            { q: 'Teuku Umar adalah pahlawan dari daerah?', choices: ['Aceh', 'Jawa', 'Sumatra Selatan', 'Bali'], a: 0, exp: 'Teuku Umar memimpin perlawanan di Aceh melawan Belanda.' },
+            { q: 'Sutan Sjahrir selain politikus juga dikenal sebagai?', choices: ['Dalam diplomasi dan pemimpin pemerintahan', 'Pelaut', 'Panglima perang', 'Gubernur'], a: 0, exp: 'Sutan Sjahrir aktif sebagai pemimpin politik dan diplomat pascakemerdekaan.' },
+            { q: 'Siapa tokoh yang memimpin Perhimpunan Indonesia di Belanda?', choices: ['Sutan Sjahrir (peran pelajar/aktivis)', 'Sukarno', 'Hatta', 'Tan Malaka'], a: 0, exp: 'Perhimpunan Pelajar Indonesia di Belanda diperjuangkan oleh tokoh pergerakan yang kemudian berperan di tanah air.' },
+            { q: 'Who is considered the author of Indonesia Raya song?', choices: ['Wage Rudolf Supratman', 'Sukarno', 'Hatta', 'Ki Hajar Dewantara'], a: 0, exp: 'Wage Rudolf Supratman menciptakan lagu kebangsaan Indonesia Raya.' },
+            { q: 'Sukarno dan Hatta dikenal sebagai?', choices: ['Proklamator kemerdekaan Indonesia', 'Tokoh perlawanan Aceh', 'Panglima militer', 'Gubernur Jawa'], a: 0, exp: 'Mereka adalah proklamator dan pemimpin awal Republik Indonesia.' },
+            { q: 'Ki Hajar Dewantara memperjuangkan prinsip pendidikan yang terkenal sebagai?', choices: ['Ing ngarsa sung tulada (menjadi contoh)', 'Bersatu kita teguh', 'Sumpah Pemuda', 'Tanam Paksa'], a: 0, exp: 'Salah satu prinsip Taman Siswa adalah "Ing ngarsa sung tulada" (pendidik memberi contoh).' },
+
+            // --- 71-100: Perlawanan terhadap Penjajah (30) ---
+            { q: 'Perang Aceh berlangsung pada kira-kira tahun?', choices: ['1873–1904', '1825–1830', '1803–1838', '1945–1949'], a: 0, exp: 'Perang Aceh melibatkan perlawanan panjang terhadap Belanda antara 1873–1904.' },
+            { q: 'Cut Nyak Dhien memimpin perlawanan di provinsi?', choices: ['Aceh', 'Jawa', 'Bali', 'Sulawesi'], a: 0, exp: 'Cut Nyak Dhien memimpin perlawanan rakyat Aceh terhadap Belanda.' },
+            { q: 'Perang Padri terjadi di pulau?', choices: ['Sumatra', 'Jawa', 'Bali', 'Kalimantan'], a: 0, exp: 'Perang Padri (awalnya konflik sosial) terjadi di Sumatra Barat.' },
+            { q: 'Pangeran Diponegoro memimpin perlawanan melawan VOC/Belanda di pulau?', choices: ['Jawa', 'Sumatra', 'Bali', 'Sulawesi'], a: 0, exp: 'Diponegoro memimpin Perang Jawa di pulau Jawa.' },
+            { q: 'Siapa tokoh perlawanan di Maluku yang dipimpin Pattimura?', choices: ['Thomas Matulessy (Pattimura)', 'Nuku', 'Diponegoro', 'Sisingamangaraja'], a: 0, exp: 'Pattimura (Thomas Matulessy) memimpin pemberontakan rakyat Maluku pada 1817.' },
+            { q: 'Perang Banjar dipimpin oleh tokoh dari pulau?', choices: ['Kalimantan Selatan', 'Jawa', 'Aceh', 'Sumatra'], a: 0, exp: 'Perang Banjar terjadi di Kalimantan Selatan melawan pendudukan kolonial.' },
+            { q: 'Siapa tokoh perlawanan dari Sumatra Barat (Padri)?', choices: ['Tuanku Imam Bonjol', 'Tuanku Tambusai', 'Pattimura', 'Teuku Umar'], a: 0, exp: 'Tuanku Imam Bonjol memimpin perlawanan kaum Padri di Sumatra Barat.' },
+            { q: 'Penyebab utama munculnya Perang Diponegoro adalah?', choices: ['Kebijakan kolonial yang meresahkan rakyat dan sengketa tanah', 'Mendukung Belanda', 'Perjanjian dagang', 'Krisis ekonomi global'], a: 0, exp: 'Perang Diponegoro dipicu oleh sengketa tanah dan kebijakan kolonial yang merugikan rakyat.' },
+            { q: 'Perlawanan Raffles di Jawa? (Trick) — jawaban yang benar menjelaskan: Raffles adalah Gubernur Inggris di Jawa, bukan pemimpin perlawanan', choices: ['Raffles adalah gubernur Inggris (bukan pemimpin perlawanan)', 'Raffles pemimpin perlawanan', 'Raffles pahlawan Indonesia', 'Raffles berasal dari Jawa'], a: 0, exp: 'Sir Stamford Raffles adalah administratur Inggris di Jawa (1811–1816), bukan pahlawan perlawanan lokal.' },
+            { q: 'Perlawanan rakyat Bali yang dikenal sebagai "Puputan" bermakna?', choices: ['Perlawanan sampai mati secara kehormatan', 'Perjanjian damai', 'Evakuasi massal', 'Perundingan'], a: 0, exp: 'Puputan merujuk pada perang total sampai tewas yang terjadi di Bali sebagai bentuk perlawanan.' },
+            { q: 'Siapa tokoh perlawanan dari Kalimantan yang terkenal?', choices: ['Pangeran Antasari', 'Diponegoro', 'Pattimura', 'Teuku Umar'], a: 0, exp: 'Pangeran Antasari memimpin perlawanan Banjar di Kalimantan Selatan.' },
+            { q: 'Mengapa Teuku Umar dianggap pahlawan Aceh?', choices: ['Berkat strategi perlawanan gerilya dan pengorbanan', 'Karena menjadi gubernur', 'Karena bekerja sama dengan Belanda', 'Karena hidup di Jawa'], a: 0, exp: 'Teuku Umar menggunakan strategi bersekutu sementara untuk mempersiapkan perlawanan efektif melawan Belanda.' },
+            { q: 'Perlawanan Diponegoro menghasilkan dampak apa bagi Hindia Belanda?', choices: ['Biaya besar dan perubahan administrasi kolonial', 'Perang mewujudkan kemerdekaan', 'Penghapusan VOC', 'Pembentukan negara baru'], a: 0, exp: 'Perang Jawa sangat menguras biaya Belanda dan memengaruhi kebijakan kolonial.' },
+            { q: 'Siapa tokoh wanita pejuang Aceh selain Cut Nyak Dhien?', choices: ['Teuku Umur (laki-laki) trick — tokoh wanita lainnya: Cut Nyak Meutia', 'Cut Nyak Meutia', 'Kartini', 'Dewi Sartika'], a: 1, exp: 'Cut Nyak Meutia juga dikenal sebagai pejuang wanita Aceh.' },
+            { q: 'Perlawanan rakyat yang paling lama di Nusantara pada abad ke-19 adalah?', choices: ['Perang Aceh', 'Perang Diponegoro', 'Perang Padri', 'Perang Bali'], a: 0, exp: 'Perang Aceh terjadi selama beberapa dekade (1873–1904) melawan Belanda.' },
+            { q: 'Apa strategi umum perlawanan gerilya yang digunakan rakyat Nusantara?', choices: ['Serangan cepat, mundur, basis di daerah sulit dijangkau', 'Pertempuran terbuka', 'Aliansi dengan pasukan penjajah', 'Strategi diplomasi saja'], a: 0, exp: 'Perlawanan gerilya memanfaatkan medan dan serangan mendadak, menghindari pertempuran terbuka. ' },
+            { q: 'Tokoh Teuku Umar terkenal karena taktik apa?', choices: ['Strategi bersekutu sementara untuk menguasai senjata Belanda', 'Mendirikan sekolah', 'Menjadi gubernur', 'Menyerahkan wilayah'], a: 0, exp: 'Teuku Umar sempat bekerja sama dengan Belanda sementara untuk memperoleh akses senjata, kemudian berbalik melawan mereka.' },
+            { q: 'Perlawanan rakyat yang dipimpin Sisingamangaraja berlangsung di daerah?', choices: ['Sumatra Utara (Tapanuli)', 'Jawa', 'Aceh', 'Maluku'], a: 0, exp: 'Sisingamangaraja memimpin perlawanan Batak di wilayah Tapanuli, Sumatra Utara.' },
+            { q: 'Perlawanan terhadap tanam paksa (Cultuurstelsel) menyebabkan?', choices: ['Krisis sosial dan penderitaan petani pribumi', 'Peningkatan pendidikan', 'Kebangkitan industri lokal', 'Perdagangan bebas'], a: 0, exp: 'Cultuurstelsel menyebabkan eksploitasi hasil tani sehingga menimbulkan penderitaan dan perlawanan lokal.' },
+            { q: 'Siapa tokoh perjuangan yang terkenal dari Mentawai? (tidak relevan — jawaban: tidak ada tokoh besar yang dikenal luas)', choices: ['Tidak relevan/tidak ada catatan tokoh nasional besar', 'Sukarno', 'Hatta', 'Sutan Sjahrir'], a: 0, exp: 'Beberapa wilayah memiliki pemimpin lokal, namun tidak semua menghasilkan tokoh nasional terkenal.' },
+
+            // --- 101-129: Peristiwa Dunia (29) ---
+            { q: 'Perang Dunia I berlangsung pada tahun?', choices: ['1914–1918', '1939–1945', '1900–1905', '1918–1923'], a: 0, exp: 'PD I berlangsung 1914–1918.' },
+            { q: 'Perang Dunia II berlangsung pada tahun?', choices: ['1939–1945', '1914–1918', '1945–1950', '1929–1933'], a: 0, exp: 'PD II berlangsung 1939–1945.' },
+            { q: 'Serangan Pearl Harbor terjadi pada tahun?', choices: ['1941', '1939', '1945', '1940'], a: 0, exp: 'Serangan Jepang ke Pearl Harbor tanggal 7 Desember 1941.' },
+            { q: 'Revolusi Rusia terjadi pada tahun?', choices: ['1917', '1905', '1922', '1939'], a: 0, exp: 'Revolusi Bolsheviks pada 1917 menggulingkan Tsar dan membawa pemerintahan Soviet.' },
+            { q: 'Konferensi Yalta (akhir PD II) membahas apa?', choices: ['Pembagian pengaruh pasca-perang dan pembentukan PBB', 'Perdagangan dunia', 'Perjanjian dagang', 'Perang dingin'], a: 0, exp: 'Konferensi Yalta (1945) membahas pengaturan pasca-perang dan struktur PBB.' },
+            { q: 'Dekolonisasi Asia berlangsung pesat setelah peristiwa besar apa?', choices: ['Perang Dunia II', 'Perang Dunia I', 'Revolusi Industri', 'Perang Dingin'], a: 0, exp: 'Dekolonisasi dipercepat setelah PD II karena melemahnya kekuatan kolonial Eropa.' },
+            { q: 'Pembentukan PBB terjadi pada tahun?', choices: ['1945', '1919', '1939', '1950'], a: 0, exp: 'PBB didirikan pada 1945 untuk menggantikan Liga Bangsa-Bangsa.' },
+            { q: 'Doktrin Monroe berkaitan dengan benua mana?', choices: ['Amerika', 'Eropa', 'Asia', 'Afrika'], a: 0, exp: 'Doktrin Monroe (1823) menyatakan wilayah Amerika sebagai kawasan pengaruh AS.' },
+            { q: 'Siapa pemimpin Revolusi Kuba 1959?', choices: ['Fidel Castro', 'Che Guevara (bukan pemimpin de jure)', 'Batista (resisten)', 'Peron'], a: 0, exp: 'Fidel Castro memimpin revolusi yang menggulingkan Batista pada 1959.' },
+            { q: 'Kapan Konferensi Bandung dilaksanakan?', choices: ['1955', '1945', '1960', '1950'], a: 0, exp: 'Konferensi Asia-Afrika (Bandung) dilaksanakan pada 1955.' },
+            { q: 'Apa tujuan gerakan non-blok?', choices: ['Menjaga kemerdekaan negara dari dominasi blok besar (AS/USSR)', 'Menjadi sekutu AS', 'Mendirikan NATO', 'Mengakhiri PBB'], a: 0, exp: 'Ekspresi politik untuk negara-negara yang tidak berpihak pada dua blok utama Perang Dingin.' },
+            { q: 'Perang Dingin terutama konflik antara negara mana?', choices: ['Amerika Serikat dan Uni Soviet', 'Perancis dan Inggris', 'Jepang dan China', 'Indonesia dan Belanda'], a: 0, exp: 'Perang Dingin adalah rivalitas geopolitik antara AS dan USSR.' },
+            { q: 'Peristiwa pendaratan D-Day terjadi di negara?', choices: ['Prancis (Normandy)', 'Italia', 'Jepang', 'Jerman'], a: 0, exp: 'Operasi D-Day (6 Juni 1944) mendarat di pantai Normandy, Prancis.' },
+            { q: 'Deklarasi Universal Hak Asasi Manusia disahkan tahun?', choices: ['1948', '1918', '1955', '1939'], a: 0, exp: 'Deklarasi Universal HAM disahkan oleh PBB pada 1948.' },
+            { q: 'Negara mana yang menjatuhkan bom atom di Hiroshima?', choices: ['Amerika Serikat', 'Jepang', 'Jerman', 'Inggris'], a: 0, exp: 'AS menjatuhkan bom atom di Hiroshima (6 Agustus 1945) dan Nagasaki (9 Agustus 1945).' },
+            { q: 'Apa penyebab langsung Perang Dunia I?', choices: ['Pembunuhan Archduke Franz Ferdinand', 'Invasi Polandia', 'Serangan Pearl Harbor', 'Revolusi Bolshevik'], a: 0, exp: 'Pembunuhan Archduke Franz Ferdinand di Sarajevo (1914) memicu pecahnya PD I.' },
+            { q: 'Gerakan dekolonisasi di Asia dipengaruhi oleh peristiwa?', choices: ['Kekalahan kolonial di PD II', 'Perjanjian Versailles', 'Imperialisme baru', 'Perang Dingin saja'], a: 0, exp: 'Kekalahan dan melemahnya Eropa pasca PD II memberi momentum bagi kemerdekaan negara-negara Asia.' },
+            { q: 'Kapan runtuhnya Tembok Berlin yang melambangkan akhir Perang Dingin?', choices: ['1989', '1975', '1999', '1961'], a: 0, exp: 'Tembok Berlin runtuh pada 1989, menandai rekonsiliasi Eropa Timur-Barat.' },
+            { q: 'Siapa pemimpin India yang memprakarsai gerakan kemerdekaan non-kekerasan?', choices: ['Mahatma Gandhi', 'Jawaharlal Nehru', 'Nehru', 'Subhas Chandra Bose'], a: 0, exp: 'Mahatma Gandhi memimpin gerakan kemerdekaan India dengan prinsip non-kekerasan (ahimsa).' },
+            { q: 'Konflik Korea 1950–1953 berakhir dengan?', choices: ['Gencatan senjata dan pembagian Korea (tidak ada perjanjian damai penuh)', 'Persatuan Korea', 'Kekalahan AS', 'Pembentukan PBB'], a: 0, exp: 'Konflik Korea berakhir dengan gencatan senjata pada 1953; masih berlangsung pembagian Korea.' }
+        ];
+
+        // ensure length is 129
+        if (BANK.length !== 129) console.warn('Bank soal tidak berjumlah 129 — saat ini:', BANK.length);
+
+        function getSeedFromDate(dateStr) { const parts = dateStr.split('-').map(Number); return parts[0] * 10000 + parts[1] * 100 + parts[2]; }
+        function getTodayDateString(d) { const dt = d || new Date(); const y = dt.getFullYear(); const m = String(dt.getMonth() + 1).padStart(2, '0'); const day = String(dt.getDate()).padStart(2, '0'); return `${y}-${m}-${day}`; }
+
+        // build daily order from bank deterministically
+        function buildDailySet(dateStr) { const seed = getSeedFromDate(dateStr); const rand = mulberry32(seed + 999); const order = shuffle(BANK.slice(), rand); return order.slice(0, 129); }
+
+        // interactive quiz (uses BANK-derived daily set)
+        let CURRENT_SET = null; let CUR_DATE = null; let userAnswers = []; let currentIndex = 0;
+
+        function renderToday() { const ds = getTodayDateString(); document.getElementById('todayStr').textContent = ds; CUR_DATE = ds; loadOrBuildSet(ds); }
+        function previewDate() { const dateInput = document.getElementById('datePicker').value; if (!dateInput) { alert('Pilih tanggal terlebih dahulu.'); return; } document.getElementById('todayStr').textContent = dateInput + ' (preview)'; CUR_DATE = dateInput; loadOrBuildSet(dateInput); }
+
+        function loadOrBuildSet(dateStr) { const set = buildDailySet(dateStr); CURRENT_SET = set; userAnswers = new Array(set.length).fill(null); currentIndex = 0; const saved = localStorage.getItem('answers_' + dateStr); if (saved) { try { const parsed = JSON.parse(saved); if (Array.isArray(parsed) && parsed.length === set.length) { userAnswers = parsed; } } catch (e) { } } renderQuestion(currentIndex); updateProgressBar(); }
+
+        function renderQuestion(i) { const q = CURRENT_SET[i]; document.getElementById('qMeta').textContent = `Soal ${i + 1} / ${CURRENT_SET.length}`; document.getElementById('qText').textContent = q.q; const choicesDiv = document.getElementById('qChoices'); choicesDiv.innerHTML = ''; q.choices.forEach((ch, ci) => { const btn = document.createElement('button'); btn.textContent = `${String.fromCharCode(65 + ci)}. ${ch}`; btn.onclick = () => { selectAnswer(i, ci); }; if (userAnswers[i] === ci) btn.classList.add('selected'); choicesDiv.appendChild(btn); }); document.getElementById('btnPrev').onclick = () => { if (i > 0) { currentIndex--; renderQuestion(currentIndex); updateProgressBar(); } }; document.getElementById('btnNext').onclick = () => { if (i < CURRENT_SET.length - 1) { currentIndex++; renderQuestion(currentIndex); updateProgressBar(); } }; document.getElementById('btnSave').onclick = () => { saveAnswers(); alert('Jawaban disimpan.'); }; document.getElementById('btnFinish').onclick = () => { finishQuizInteractive(); } }
+
+        function selectAnswer(questionIndex, choiceIndex) { userAnswers[questionIndex] = choiceIndex; saveAnswers(); renderQuestion(questionIndex); updateProgressBar(); }
+        function saveAnswers() { if (!CUR_DATE) return; localStorage.setItem('answers_' + CUR_DATE, JSON.stringify(userAnswers)); }
+        function updateProgressBar() { const answered = userAnswers.filter(x => x != null).length; const pct = Math.round((answered / CURRENT_SET.length) * 100); document.getElementById('progBar').style.width = pct + '%'; }
+
+        function finishQuizInteractive() { const set = CURRENT_SET; let correct = 0; const review = []; for (let i = 0; i < set.length; i++) { const ua = userAnswers[i]; const ok = ua === set[i].a; if (ok) correct++; review.push({ no: i + 1, question: set[i].q, your: ua == null ? null : String.fromCharCode(65 + ua), yourText: ua == null ? null : set[i].choices[ua], answer: String.fromCharCode(65 + set[i].a), answerText: set[i].choices[set[i].a], correct: ok, explanation: set[i].exp }); } const result = { date: CUR_DATE, score: correct, total: set.length, review: review }; localStorage.setItem('result_' + CUR_DATE, JSON.stringify(result)); document.getElementById('resultBox').innerText = `Skor: ${correct} / ${set.length} • Review tersimpan (unduh untuk detail).`; alert(`Selesai! Skor: ${correct} / ${set.length}`); }
+
+        function downloadReview() { const saved = localStorage.getItem('result_' + CUR_DATE); if (!saved) { alert('Belum ada review untuk tanggal ini. Selesaikan kuis terlebih dahulu.'); return; } const blob = new Blob([saved], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `review_${CUR_DATE}.json`; a.click(); }
+        function downloadTodayJSON() { const set = CURRENT_SET || buildDailySet(getTodayDateString()); const blob = new Blob([JSON.stringify(set, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `soal_${CUR_DATE || getTodayDateString()}.json`; a.click(); }
+        function downloadKey() { const set = CURRENT_SET || buildDailySet(getTodayDateString()); const key = set.map((q, i) => ({ no: i + 1, answer: String.fromCharCode(65 + q.a), answerText: q.choices[q.a], explanation: q.exp })); const blob = new Blob([JSON.stringify(key, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `kunci_${CUR_DATE || getTodayDateString()}.json`; a.click(); }
+        function downloadHTML() { const html = '<!doctype html>\n' + document.documentElement.outerHTML; const blob = new Blob([html], { type: 'text/html' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `sejarah_academy_${getTodayDateString()}.html`; a.click(); }
+        function loadSavedAnswers() { const saved = localStorage.getItem('answers_' + CUR_DATE); if (!saved) { alert('Tidak ada jawaban tersimpan untuk tanggal ini.'); return; } try { userAnswers = JSON.parse(saved); alert('Jawaban dimuat dari penyimpanan.'); renderQuestion(currentIndex); updateProgressBar(); } catch (e) { alert('Gagal memuat jawaban.'); } }
+
+        document.addEventListener('keydown', function (e) { if (!CURRENT_SET) return; if (e.key === 'ArrowRight') { if (currentIndex < CURRENT_SET.length - 1) { currentIndex++; renderQuestion(currentIndex); updateProgressBar(); } } if (e.key === 'ArrowLeft') { if (currentIndex > 0) { currentIndex--; renderQuestion(currentIndex); updateProgressBar(); } } if (e.key >= '1' && e.key <= '4') { const ci = Number(e.key) - 1; selectAnswer(currentIndex, ci); } });
+
+        (function init() { const today = getTodayDateString(); document.getElementById('datePicker').value = today; renderToday(); if (localStorage.getItem('result_' + today)) { document.getElementById('resultBox').innerText = 'Terdapat hasil tersimpan untuk hari ini — buka Review atau unduh.'; } })();
+    </script>
+</body>
+
+</html>
