@@ -333,7 +333,7 @@
             return `${y}-${m}-${day}`;
         }
 
-       function rotationOffsetForDate(dateStr) {
+        function rotationOffsetForDate(dateStr) {
     const parts = dateStr.split('-').map(Number);
     const dt = new Date(parts[0], parts[1] - 1, parts[2]);
     const days = Math.floor(dt.getTime() / (24 * 60 * 60 * 1000));
